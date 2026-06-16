@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concert Tracker — v1.2.0</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F5F5F7; --surface: #FFFFFF; --border: #E5E5EA;
+    --text: #1D1D1F; --text2: #6E6E73;
+    --accent: #0071E3; --accent-light: #E8F1FB;
+    --gold: #FFD60A; --red: #FF3B30;
+    --purple: #7B61FF; --purple-light: #F0EEFF;
+    --green: #30D158;
+    --radius: 16px; --radius-sm: 10px;
+    --shadow: 0 2px 12px rgba(0,0,0,0.07);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.13);
+    --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+
+  header { background: rgba(255,255,255,0.88); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 24px; }
+  .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; }
+  .logo-icon { width: 32px; height: 32px; background: var(--accent); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px; }
+  .header-actions { display: flex; gap: 8px; align-items: center; }
+
+  .tab-bar { display: flex; gap: 4px; background: var(--bg); border-radius: 980px; padding: 3px; border: 1px solid var(--border); }
+  .tab-btn { padding: 6px 16px; border-radius: 980px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; background: transparent; color: var(--text2); transition: all 0.18s; font-family: var(--font); }
+  .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .tab-btn .tab-count { display: inline-block; background: var(--purple); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 99px; margin-left: 4px; vertical-align: middle; }
+
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 980px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; transition: all 0.18s ease; font-family: var(--font); white-space: nowrap; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { background: #0077ED; }
+  .btn-primary-purple { background: var(--purple); color: #fff; }
+  .btn-primary-purple:hover { background: #6a50f0; }
+  .btn-ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+  .btn-ghost:hover { background: var(--bg); }
+  .btn-green { background: var(--green-light,#E8F8EC); color: #1A7A34; border: 1px solid #B6E8C4; }
+  .btn-green:hover { background: #d4f0dc; }
+  .btn-sm { padding: 6px 12px; font-size: 12px; }
+  .btn-danger { background: #FFF0EF; color: var(--red); border: 1px solid #FFD0CE; }
+  .btn-danger:hover { background: #FFE0DE; }
+
+  main { max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; }
+  .page { display: none; }
+  .page.active { display: block; }
+
+  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; color: var(--text); }
+
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 12px; margin-bottom: 28px; }
+  .stat-card { background: var(--surface); border-radius: var(--radius); padding: 20px 18px; border: 1px solid var(--border); box-shadow: var(--shadow); position: relative; overflow: hidden; }
+  .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); border-radius: 3px 3px 0 0; }
+  .stat-card.purple::before { background: var(--purple); }
+  .stat-card.green::before { background: var(--green); }
+  .stat-label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 10px; }
+  .stat-value { font-size: 30px; font-weight: 700; letter-spacing: -1.5px; color: var(--text); }
+  .stat-sub { font-size: 11px; color: var(--text2); margin-top: 4px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+  @media(max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+  .panel { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
+  .panel-header { padding: 18px 20px 0; font-size: 15px; font-weight: 700; }
+  .panel-body { padding: 14px 20px 20px; }
+
+  .year-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+  .year-row:last-child { border-bottom: none; }
+  .year-label { font-size: 14px; font-weight: 700; width: 44px; flex-shrink: 0; }
+  .year-bar-wrap { flex: 1; height: 5px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+  .year-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--purple)); border-radius: 99px; transition: width 0.7s cubic-bezier(0.4,0,0.2,1); }
+  .year-info { font-size: 11px; color: var(--text2); text-align: right; white-space: nowrap; min-width: 115px; }
+
+  .artist-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .artist-row:last-child { border-bottom: none; }
+  .artist-rank { font-size: 12px; font-weight: 700; color: var(--text2); width: 18px; flex-shrink: 0; text-align: center; }
+  .artist-thumb { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; background: var(--bg); flex-shrink: 0; border: 1px solid var(--border); }
+  .artist-info { flex: 1; min-width: 0; }
+  .artist-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .artist-count { font-size: 11px; color: var(--text2); }
+  .badge { background: var(--accent-light); color: var(--accent); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 99px; white-space: nowrap; }
+
+  .filters-bar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
+  .search-input { flex: 1; min-width: 180px; padding: 10px 16px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 14px; color: var(--text); outline: none; transition: border-color 0.18s; }
+  .search-input:focus { border-color: var(--accent); }
+  select.filter-select { padding: 10px 30px 10px 14px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 14px; color: var(--text); outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
+
+  /* PAST CARDS */
+  .concerts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(278px, 1fr)); gap: 16px; }
+  .concert-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .concert-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .card-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; background: var(--bg); }
+  .card-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+  .concert-card:hover .card-img { transform: scale(1.03); }
+  .card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 48px; background: #EEF2FA; }
+  .card-date-badge { position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-radius: 8px; padding: 4px 10px; font-size: 11px; font-weight: 600; color: var(--text); }
+  .card-body { padding: 14px 16px 16px; }
+  .card-artist { font-size: 15px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 3px; }
+  .card-location { font-size: 12px; color: var(--text2); margin-bottom: 1px; }
+  .card-city { font-size: 11px; color: var(--text2); }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
+  .card-sector { font-size: 11px; background: var(--bg); padding: 3px 8px; border-radius: 6px; color: var(--text2); font-weight: 500; }
+  .card-price { font-size: 14px; font-weight: 700; color: var(--accent); }
+  .stars { display: flex; gap: 2px; margin-top: 7px; }
+  .star { font-size: 13px; }
+  .star.filled { color: var(--gold); }
+  .star.empty { color: #D1D1D6; }
+  .card-notes { font-size: 11px; color: var(--text2); margin-top: 7px; line-height: 1.5; font-style: italic; }
+  .card-actions { display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px; }
+
+  /* UPCOMING */
+  .upcoming-hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); border-radius: var(--radius); padding: 32px; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .upcoming-hero::before { content: ''; position: absolute; top: -40%; right: -10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(123,97,255,0.3) 0%, transparent 70%); pointer-events: none; }
+  .upcoming-hero::after { content: ''; position: absolute; bottom: -30%; left: 10%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(0,113,227,0.25) 0%, transparent 70%); pointer-events: none; }
+  .upcoming-hero-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .upcoming-hero-text h2 { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.5px; margin-bottom: 6px; }
+  .upcoming-hero-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+  .upcoming-stats { display: flex; gap: 24px; }
+  .upcoming-stat { text-align: center; }
+  .upcoming-stat-val { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -1px; }
+  .upcoming-stat-label { font-size: 11px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+  .upcoming-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .upcoming-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; display: flex; flex-direction: column; }
+  .upcoming-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .upcoming-card-img-wrap { position: relative; aspect-ratio: 16/7; overflow: hidden; background: var(--bg); }
+  .upcoming-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .upcoming-card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 44px; background: linear-gradient(135deg, #F0EEFF, #E8F1FB); }
+  .upcoming-ribbon { position: absolute; top: 0; right: 0; }
+  .days-badge { background: var(--purple); color: #fff; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 0 0 0 12px; white-space: nowrap; }
+  .days-badge.soon { background: #FF9500; }
+  .days-badge.very-soon { background: var(--red); }
+  .days-badge.today { background: var(--green); }
+  .upcoming-card-body { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+  .upcoming-artist { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+  .upcoming-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .upcoming-meta-label { font-size: 10px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+  .upcoming-meta-value { font-size: 13px; font-weight: 500; color: var(--text); }
+  .upcoming-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid var(--border); margin-top: auto; }
+  .upcoming-price { font-size: 17px; font-weight: 700; color: var(--purple); }
+  .upcoming-sector { font-size: 11px; background: var(--purple-light); color: var(--purple); padding: 3px 8px; border-radius: 6px; font-weight: 600; }
+  .upcoming-notes { font-size: 11px; color: var(--text2); font-style: italic; margin-top: 6px; line-height: 1.5; }
+  .countdown-pill { display: inline-flex; align-items: center; gap: 4px; background: var(--purple-light); color: var(--purple); font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 99px; margin-bottom: 12px; }
+  .countdown-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+
+  /* ── TICKET AREA ── */
+  .ticket-zone { margin-top: 12px; padding: 12px; border-radius: var(--radius-sm); border: 1.5px dashed var(--border); background: var(--bg); cursor: pointer; transition: all 0.18s; text-align: center; }
+  .ticket-zone:hover { border-color: var(--purple); background: var(--purple-light); }
+  .ticket-zone.has-ticket { border-style: solid; border-color: #B6E8C4; background: #F0FBF3; cursor: default; }
+  .ticket-zone-label { font-size: 12px; color: var(--text2); margin-top: 4px; }
+  .ticket-preview { display: flex; align-items: center; gap: 10px; }
+  .ticket-thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); flex-shrink: 0; background: var(--bg); }
+  .ticket-pdf-thumb { width: 48px; height: 48px; border-radius: 8px; background: #FFF0EF; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .ticket-info { flex: 1; min-width: 0; text-align: left; }
+  .ticket-name { font-size: 12px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ticket-size { font-size: 11px; color: var(--text2); }
+  .ticket-actions-row { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+
+  /* TICKET VIEWER OVERLAY */
+  .ticket-viewer { position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 500; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+  .ticket-viewer.open { opacity: 1; pointer-events: all; }
+  .ticket-viewer-header { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 860px; padding: 0 16px 12px; }
+  .ticket-viewer-title { color: #fff; font-size: 15px; font-weight: 600; }
+  .ticket-viewer-actions { display: flex; gap: 8px; }
+  .ticket-viewer-btn { padding: 8px 16px; border-radius: 980px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; font-family: var(--font); }
+  .ticket-viewer-btn.download { background: var(--purple); color: #fff; }
+  .ticket-viewer-btn.close { background: rgba(255,255,255,0.15); color: #fff; }
+  .ticket-viewer-btn.close:hover { background: rgba(255,255,255,0.25); }
+  .ticket-viewer-img { max-width: min(860px,95vw); max-height: 78vh; object-fit: contain; border-radius: 12px; }
+  .ticket-viewer-iframe { width: min(860px,95vw); height: 78vh; border: none; border-radius: 12px; background: #fff; }
+
+  /* FORM-TICKET upload in modal */
+  .ticket-upload-zone { border: 1.5px dashed var(--border); border-radius: var(--radius-sm); padding: 18px; text-align: center; cursor: pointer; transition: all 0.18s; background: var(--bg); }
+  .ticket-upload-zone:hover { border-color: var(--purple); background: var(--purple-light); }
+  .ticket-upload-zone.has-file { border-style: solid; border-color: #B6E8C4; background: #F0FBF3; }
+  .ticket-upload-icon { font-size: 28px; margin-bottom: 6px; }
+  .ticket-upload-label { font-size: 13px; color: var(--text2); }
+  .ticket-upload-name { font-size: 12px; font-weight: 600; color: #1A7A34; margin-top: 4px; }
+
+  /* EMPTY STATE */
+  .empty-state { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text2); }
+  .empty-state .emoji { font-size: 48px; margin-bottom: 12px; }
+  .empty-state p { font-size: 16px; margin-bottom: 16px; }
+
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); z-index: 200; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  @media(min-width: 600px) { .modal-overlay { align-items: center; } }
+  .modal { background: var(--surface); border-radius: var(--radius) var(--radius) 0 0; width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); }
+  @media(min-width: 600px) { .modal { border-radius: var(--radius); transform: scale(0.94); } }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  @media(min-width: 600px) { .modal-overlay.open .modal { transform: scale(1); } }
+  .modal-header { padding: 20px 24px 0; display: flex; align-items: center; justify-content: space-between; }
+  .modal-title { font-size: 19px; font-weight: 700; }
+  .modal-close { width: 30px; height: 30px; border-radius: 50%; border: none; background: var(--bg); color: var(--text2); font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .modal-body { padding: 20px 24px 32px; }
+  .modal-tabs { display: flex; gap: 0; margin-bottom: 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+  .modal-tab { flex: 1; padding: 10px; text-align: center; font-size: 13px; font-weight: 600; cursor: pointer; background: var(--surface); color: var(--text2); border: none; font-family: var(--font); transition: all 0.18s; }
+  .modal-tab.active { background: var(--accent); color: #fff; }
+  .modal-tab.active.purple { background: var(--purple); }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media(max-width: 480px) { .form-grid { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1/-1; }
+  label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
+  input, textarea, select.form-select { padding: 11px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: var(--font); font-size: 14px; color: var(--text); background: var(--surface); outline: none; transition: border-color 0.18s; -webkit-appearance: none; }
+  input:focus, textarea:focus, select.form-select:focus { border-color: var(--accent); }
+  textarea { resize: vertical; min-height: 80px; }
+  .star-rating { display: flex; gap: 6px; }
+  .star-rating .star-btn { font-size: 28px; cursor: pointer; background: none; border: none; padding: 0; color: #D1D1D6; transition: color 0.15s, transform 0.15s; }
+  .star-rating .star-btn.active { color: var(--gold); }
+  .star-rating .star-btn:hover { transform: scale(1.15); }
+
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: #1D1D1F; color: #fff; padding: 12px 20px; border-radius: 980px; font-size: 14px; font-weight: 500; z-index: 999; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); pointer-events: none; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .section-sep { margin: 32px 0 16px; }
+  #importFile, #ticketFileInput { display: none; }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  @media(max-width:600px) { .header-actions .btn-ghost{display:none} .upcoming-stats{display:none} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo"><div class="logo-icon">🎵</div><span>Concert Tracker</span></div>
+    <div class="header-actions">
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchPage('past',this)">Passati</button>
+        <button class="tab-btn" onclick="switchPage('upcoming',this)">In Arrivo <span class="tab-count" id="upcomingCount">0</span></button>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="openImport()">⬆ Importa</button>
+      <button class="btn btn-ghost btn-sm" onclick="exportData()">⬇ Esporta</button>
+      <button class="btn btn-primary" id="addBtn" onclick="openModal('past')">+ Aggiungi</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="page active" id="page-past">
+    <div class="stats-grid" id="statsGrid"></div>
+    <div class="two-col">
+      <div class="panel"><div class="panel-header">📅 Riepilogo Annuale</div><div class="panel-body" id="annualList"></div></div>
+      <div class="panel"><div class="panel-header">🏆 Artisti Più Visti</div><div class="panel-body" id="topArtists"></div></div>
+    </div>
+    <div class="section-sep">
+      <div class="section-title">Cronologia Concerti</div>
+      <div class="filters-bar">
+        <input class="search-input" id="searchInput" type="search" placeholder="🔍 Cerca artista…" oninput="renderConcerts()">
+        <select class="filter-select" id="yearFilter" onchange="renderConcerts()"><option value="">Tutti gli anni</option></select>
+        <select class="filter-select" id="cityFilter" onchange="renderConcerts()"><option value="">Tutte le città</option></select>
+      </div>
+    </div>
+    <div class="concerts-grid" id="concertsGrid"></div>
+  </div>
+
+  <div class="page" id="page-upcoming">
+    <div class="upcoming-hero">
+      <div class="upcoming-hero-inner">
+        <div class="upcoming-hero-text"><h2>🎟 In Arrivo</h2><p>I tuoi prossimi live da non perdere</p></div>
+        <div class="upcoming-stats" id="upcomingHeroStats"></div>
+      </div>
+    </div>
+    <div class="section-sep" style="margin-top:0">
+      <div class="filters-bar">
+        <input class="search-input" id="upcomingSearch" type="search" placeholder="🔍 Cerca artista…" oninput="renderUpcoming()">
+        <select class="filter-select" id="upcomingCityFilter" onchange="renderUpcoming()"><option value="">Tutte le città</option></select>
+      </div>
+    </div>
+    <div class="upcoming-grid" id="upcomingGrid"></div>
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle">Nuovo Concerto</span>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="setModalType('past',this)">🎸 Passato</button>
+        <button class="modal-tab purple" onclick="setModalType('upcoming',this)">🎟 In Arrivo</button>
+      </div>
+      <div class="form-grid">
+        <div class="form-group full"><label>Artista / Band *</label><input type="text" id="f_artist" placeholder="es. Coldplay" required></div>
+        <div class="form-group"><label>Data *</label><input type="date" id="f_date" required></div>
+        <div class="form-group"><label>Prezzo Biglietto (€)</label><input type="number" id="f_price" placeholder="0.00" min="0" step="0.01"></div>
+        <div class="form-group"><label>Location / Stadio</label><input type="text" id="f_venue" placeholder="es. Stadio San Siro"></div>
+        <div class="form-group"><label>Settore</label><input type="text" id="f_sector" placeholder="es. Prato Gold"></div>
+        <div class="form-group"><label>Città</label><input type="text" id="f_city" placeholder="es. Milano"></div>
+        <div class="form-group"><label>Nazione</label><input type="text" id="f_country" placeholder="es. Italia"></div>
+        <div class="form-group full" id="ratingGroup">
+          <label>Voto (opzionale)</label>
+          <div class="star-rating" id="starRating">
+            <button class="star-btn" onclick="setRating(1)">★</button><button class="star-btn" onclick="setRating(2)">★</button>
+            <button class="star-btn" onclick="setRating(3)">★</button><button class="star-btn" onclick="setRating(4)">★</button>
+            <button class="star-btn" onclick="setRating(5)">★</button>
+          </div>
+        </div>
+        <div class="form-group full"><label id="notesLabel">Note / Ricordi</label><textarea id="f_notes" placeholder="Scrivi qualcosa…"></textarea></div>
+        <div class="form-group full" id="ticketUploadGroup">
+          <label>Biglietto (PDF o immagine)</label>
+          <div class="ticket-upload-zone" id="ticketDropZone" onclick="document.getElementById('ticketFileInput').click()" ondragover="event.preventDefault();this.style.borderColor='var(--purple)'" ondragleave="this.style.borderColor=''" ondrop="handleTicketDrop(event)">
+            <div class="ticket-upload-icon">🎫</div>
+            <div class="ticket-upload-label">Clicca per allegare il biglietto<br><span style="font-size:11px">PDF, JPG, PNG — max 4MB</span></div>
+            <div class="ticket-upload-name" id="ticketUploadName" style="display:none"></div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
+        <button class="btn btn-ghost" onclick="closeModal()">Annulla</button>
+        <button class="btn btn-primary" id="saveBtn" onclick="saveConcert()">Salva Concerto</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKET VIEWER -->
+<div class="ticket-viewer" id="ticketViewer" onclick="closeTicketViewer(event)">
+  <div class="ticket-viewer-header" onclick="event.stopPropagation()">
+    <span class="ticket-viewer-title" id="ticketViewerTitle">Biglietto</span>
+    <div class="ticket-viewer-actions">
+      <button class="ticket-viewer-btn download" onclick="downloadTicket()">⬇ Scarica</button>
+      <button class="ticket-viewer-btn close" onclick="closeTicketViewer()">✕ Chiudi</button>
+    </div>
+  </div>
+  <img class="ticket-viewer-img" id="ticketViewerImg" src="" style="display:none" onclick="event.stopPropagation()">
+  <iframe class="ticket-viewer-iframe" id="ticketViewerFrame" src="" style="display:none" onclick="event.stopPropagation()"></iframe>
+</div>
+
+<div class="toast" id="toast"></div>
+<input type="file" id="importFile" accept=".json" onchange="importData(event)">
+<input type="file" id="ticketFileInput" accept=".pdf,image/*" onchange="handleTicketFile(event)">
+
+<script>
+/* ── v1.2.0 ── */
+const STORAGE_KEY = 'concertTracker_v1';
+let concerts = [], upcoming = [];
+let currentRating = 0, editingId = null, modalTypeForSave = 'past', currentPage = 'past';
+const imageCache = {};
+let pendingTicket = null; // { name, type, data (base64) }
+let viewerTicket = null;
+
+const defaultConcerts = [
+  { id:uid(), artist:'Coldplay', date:'2023-07-13', venue:'Stadio Olimpico', sector:'Prato Gold', city:'Roma', country:'Italia', price:98.5, rating:5, notes:"Spettacolo incredibile, fuochi d'artificio durante Yellow. Un sogno." },
+  { id:uid(), artist:'Vasco Rossi', date:'2022-06-11', venue:'Stadio San Siro', sector:'Primo Anello Rosso', city:'Milano', country:'Italia', price:75, rating:5, notes:"San Siro sold out. Albachiara ha fatto venire i brividi." },
+  { id:uid(), artist:'Radiohead', date:'2012-07-03', venue:"Heineken Jammin' Festival", sector:'Area Generale', city:'Venezia', country:'Italia', price:50, rating:5, notes:"Creep come encore finale. Thom Yorke in forma strepitosa." },
+  { id:uid(), artist:'Daft Punk', date:'2007-08-23', venue:'Lowlands Festival', sector:'Bravo Stage', city:'Biddinghuizen', country:'Paesi Bassi', price:120, rating:5, notes:"Pyramid stage tour. Le più belle 2 ore della mia vita musicale." },
+];
+const defaultUpcoming = [
+  { id:uid(), artist:'Bruce Springsteen', date:'2025-06-20', venue:'Stadio San Siro', sector:'Prato', city:'Milano', country:'Italia', price:120, notes:'Finalmente il Boss torna in Italia!' },
+  { id:uid(), artist:'Blur', date:'2025-09-12', venue:'Unipol Forum', sector:'Tribuna', city:'Assago', country:'Italia', price:85, notes:"Damon Albarn live — non vedo l'ora." },
+];
+
+function uid() { return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+function load() { try { const d=localStorage.getItem(STORAGE_KEY); return d?JSON.parse(d):null; } catch { return null; } }
+function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify({concerts,upcoming})); }
+
+function init() {
+  const s=load();
+  if(s && (s.concerts||s.upcoming)) { concerts=s.concerts||[]; upcoming=s.upcoming||[]; }
+  else if(Array.isArray(s)) { concerts=s; upcoming=[...defaultUpcoming]; }
+  else { concerts=[...defaultConcerts]; upcoming=[...defaultUpcoming]; }
+  save(); render();
+}
+
+/* IMAGE */
+async function fetchArtistImage(artist) {
+  if(imageCache[artist]) return imageCache[artist];
+  try {
+    const r=await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(artist)}&prop=pageimages&format=json&pithumbsize=500&origin=*`);
+    const d=await r.json();
+    const p=Object.values(d.query.pages)[0];
+    if(p?.thumbnail?.source){imageCache[artist]=p.thumbnail.source;return p.thumbnail.source;}
+  } catch {}
+  const fb=`https://source.unsplash.com/500x300/?concert,music,${encodeURIComponent(artist)}`;
+  imageCache[artist]=fb; return fb;
+}
+function imgFallback(el){el.style.display='none';if(el.nextElementSibling)el.nextElementSibling.style.display='flex';}
+
+/* NAV */
+function switchPage(page, btn) {
+  currentPage=page;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const ab=document.getElementById('addBtn');
+  if(page==='upcoming'){ab.className='btn btn-primary-purple';ab.textContent='+ Programma';}
+  else{ab.className='btn btn-primary';ab.textContent='+ Aggiungi';}
+}
+
+/* RENDER */
+function render(){renderStats();renderAnnual();renderTopArtists();renderFilters();renderConcerts();renderUpcoming();updateUpcomingCount();}
+
+function renderStats(){
+  const total=concerts.length, spend=concerts.reduce((s,c)=>s+(c.price||0),0), avg=total?spend/total:0;
+  const artists=new Set(concerts.map(c=>c.artist.toLowerCase())).size;
+  const cities=new Set(concerts.map(c=>c.city.toLowerCase())).size;
+  document.getElementById('statsGrid').innerHTML=[
+    {label:'Concerti Totali',val:total,sub:'live visti',cls:''},
+    {label:'Spesa Totale',val:`€${spend.toFixed(0)}`,sub:`media €${avg.toFixed(0)} / biglietto`,cls:''},
+    {label:'Artisti Unici',val:artists,sub:'artisti diversi',cls:'purple'},
+    {label:'Città / Location',val:cities,sub:'luoghi unici',cls:'green'},
+  ].map(s=>`<div class="stat-card ${s.cls}"><div class="stat-label">${s.label}</div><div class="stat-value">${s.val}</div><div class="stat-sub">${s.sub}</div></div>`).join('');
+}
+
+function renderAnnual(){
+  const by={};
+  concerts.forEach(c=>{const y=c.date.slice(0,4);if(!by[y])by[y]={count:0,spend:0};by[y].count++;by[y].spend+=(c.price||0);});
+  const years=Object.keys(by).sort((a,b)=>b-a);
+  const max=Math.max(...years.map(y=>by[y].count),1);
+  const el=document.getElementById('annualList');
+  if(!years.length){el.innerHTML='<p style="color:var(--text2);font-size:14px;">Nessun dato</p>';return;}
+  el.innerHTML=years.map(y=>`<div class="year-row">
+    <span class="year-label">${y}</span>
+    <div class="year-bar-wrap"><div class="year-bar" style="width:${(by[y].count/max*100).toFixed(0)}%"></div></div>
+    <span class="year-info">${by[y].count} concerti · €${by[y].spend.toFixed(0)}</span>
+  </div>`).join('');
+}
+
+async function renderTopArtists(){
+  const counts={};
+  concerts.forEach(c=>{counts[c.artist]=(counts[c.artist]||0)+1;});
+  const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const el=document.getElementById('topArtists');
+  if(!sorted.length){el.innerHTML='<p style="color:var(--text2);font-size:14px;">Nessun dato</p>';return;}
+  el.innerHTML=sorted.map(([a,n],i)=>`<div class="artist-row">
+    <span class="artist-rank">${i+1}</span>
+    <img class="artist-thumb" id="art_${CSS.escape(a)}" src="" alt="${a}" onerror="imgFallback(this)">
+    <span style="display:none;width:40px;height:40px;border-radius:10px;background:var(--accent-light);align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🎤</span>
+    <div class="artist-info"><div class="artist-name">${a}</div><div class="artist-count">${n} concert${n>1?'i':''}</div></div>
+    <span class="badge">${n}×</span>
+  </div>`).join('');
+  sorted.forEach(async([a])=>{const url=await fetchArtistImage(a);const img=document.getElementById('art_'+CSS.escape(a));if(img)img.src=url;});
+}
+
+function renderFilters(){
+  const years=[...new Set(concerts.map(c=>c.date.slice(0,4)))].sort((a,b)=>b-a);
+  const cities=[...new Set(concerts.map(c=>c.city))].sort();
+  const yCities=[...new Set(upcoming.map(c=>c.city))].sort();
+  const yf=document.getElementById('yearFilter'),cf=document.getElementById('cityFilter'),ucf=document.getElementById('upcomingCityFilter');
+  const yv=yf.value,cv=cf.value;
+  yf.innerHTML='<option value="">Tutti gli anni</option>'+years.map(y=>`<option value="${y}">${y}</option>`).join('');
+  cf.innerHTML='<option value="">Tutte le città</option>'+cities.map(c=>`<option value="${c}">${c}</option>`).join('');
+  ucf.innerHTML='<option value="">Tutte le città</option>'+yCities.map(c=>`<option value="${c}">${c}</option>`).join('');
+  yf.value=yv;cf.value=cv;
+}
+
+function renderConcerts(){
+  const q=document.getElementById('searchInput').value.trim().toLowerCase();
+  const yf=document.getElementById('yearFilter').value,cf=document.getElementById('cityFilter').value;
+  let f=[...concerts].filter(c=>{
+    if(q&&!c.artist.toLowerCase().includes(q))return false;
+    if(yf&&c.date.slice(0,4)!==yf)return false;
+    if(cf&&c.city!==cf)return false;
+    return true;
+  }).sort((a,b)=>b.date.localeCompare(a.date));
+  const grid=document.getElementById('concertsGrid');
+  if(!f.length){grid.innerHTML=`<div class="empty-state"><div class="emoji">🎸</div><p>Nessun concerto trovato</p></div>`;return;}
+  grid.innerHTML=f.map(c=>{
+    const stars=[1,2,3,4,5].map(i=>`<span class="star ${c.rating&&i<=c.rating?'filled':'empty'}">★</span>`).join('');
+    const dateStr=new Date(c.date+'T12:00').toLocaleDateString('it-IT',{day:'2-digit',month:'short',year:'numeric'});
+    return `<div class="concert-card">
+      <div class="card-img-wrap">
+        <img class="card-img" id="ci_${c.id}" src="" alt="${c.artist}" onerror="imgFallback(this)">
+        <div class="card-img-placeholder" style="display:none">🎵</div>
+        <span class="card-date-badge">${dateStr}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-artist">${c.artist}</div>
+        <div class="card-location">${c.venue||'—'}</div>
+        <div class="card-city">${[c.city,c.country].filter(Boolean).join(', ')}</div>
+        ${c.rating?`<div class="stars">${stars}</div>`:''}
+        ${c.notes?`<div class="card-notes">"${c.notes.slice(0,80)}${c.notes.length>80?'…':''}"</div>`:''}
+        <div class="card-footer">
+          <span class="card-sector">${c.sector||'—'}</span>
+          <span class="card-price">${c.price?'€'+Number(c.price).toFixed(0):'—'}</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-danger btn-sm" onclick="deleteConcert('${c.id}')">✕ Elimina</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  f.forEach(async c=>{const url=await fetchArtistImage(c.artist);const img=document.getElementById(`ci_${c.id}`);if(img){img.src=url;img.style.display='block';}});
+}
+
+/* UPCOMING */
+function daysUntil(d){const t=new Date();t.setHours(0,0,0,0);const x=new Date(d+'T12:00');x.setHours(0,0,0,0);return Math.round((x-t)/(864e5));}
+function daysBadge(days){
+  if(days<0)return '';
+  if(days===0)return `<div class="days-badge today">Oggi! 🔥</div>`;
+  if(days<=7)return `<div class="days-badge very-soon">tra ${days} giorni</div>`;
+  if(days<=30)return `<div class="days-badge soon">tra ${days} giorni</div>`;
+  return `<div class="days-badge">tra ${days} giorni</div>`;
+}
+function countdownText(days){
+  if(days<0)return '';
+  if(days===0)return `<div class="countdown-pill"><span class="countdown-dot"></span>Oggi è il giorno!</div>`;
+  if(days===1)return `<div class="countdown-pill"><span class="countdown-dot"></span>Domani!</div>`;
+  return `<div class="countdown-pill"><span class="countdown-dot"></span>${days} giorni al concerto</div>`;
+}
+
+function ticketZoneHTML(c) {
+  if(!c.ticket) {
+    return `<div class="ticket-zone" onclick="openTicketUploadFor('${c.id}')">
+      <div style="font-size:20px">🎫</div>
+      <div class="ticket-zone-label">Allega biglietto</div>
+    </div>`;
+  }
+  const isPDF = c.ticket.type === 'application/pdf';
+  return `<div class="ticket-zone has-ticket">
+    <div class="ticket-preview">
+      ${isPDF
+        ? `<div class="ticket-pdf-thumb">📄</div>`
+        : `<img class="ticket-thumb" src="${c.ticket.data}" alt="biglietto">`}
+      <div class="ticket-info">
+        <div class="ticket-name">${c.ticket.name}</div>
+        <div class="ticket-size">${c.ticket.size}</div>
+      </div>
+    </div>
+    <div class="ticket-actions-row">
+      <button class="btn btn-primary-purple btn-sm" onclick="openTicketViewer('${c.id}')">👁 Apri Biglietto</button>
+      <button class="btn btn-ghost btn-sm" onclick="downloadTicketById('${c.id}')">⬇ Scarica</button>
+      <button class="btn btn-danger btn-sm" onclick="removeTicket('${c.id}')">✕ Rimuovi</button>
+    </div>
+  </div>`;
+}
+
+function renderUpcoming(){
+  const q=document.getElementById('upcomingSearch').value.trim().toLowerCase();
+  const cf=document.getElementById('upcomingCityFilter').value;
+  let f=[...upcoming].filter(c=>{
+    if(q&&!c.artist.toLowerCase().includes(q))return false;
+    if(cf&&c.city!==cf)return false;
+    return true;
+  }).sort((a,b)=>a.date.localeCompare(b.date));
+
+  const future=f.filter(c=>daysUntil(c.date)>=0);
+  const totalSpend=future.reduce((s,c)=>s+(c.price||0),0);
+  document.getElementById('upcomingHeroStats').innerHTML=future.length?`
+    <div class="upcoming-stat"><div class="upcoming-stat-val">${future.length}</div><div class="upcoming-stat-label">Programmati</div></div>
+    <div class="upcoming-stat"><div class="upcoming-stat-val">€${totalSpend.toFixed(0)}</div><div class="upcoming-stat-label">Investiti</div></div>
+    ${future[0]?`<div class="upcoming-stat"><div class="upcoming-stat-val">${daysUntil(future[0].date)}</div><div class="upcoming-stat-label">Giorni al prossimo</div></div>`:''}
+  `:'';
+
+  const grid=document.getElementById('upcomingGrid');
+  if(!f.length){grid.innerHTML=`<div class="empty-state"><div class="emoji">🎟</div><p>Nessun concerto in programma</p><button class="btn btn-primary-purple" onclick="openModal('upcoming')">+ Aggiungi il prossimo live</button></div>`;return;}
+
+  grid.innerHTML=f.map(c=>{
+    const days=daysUntil(c.date);
+    const dateStr=new Date(c.date+'T12:00').toLocaleDateString('it-IT',{day:'2-digit',month:'long',year:'numeric'});
+    return `<div class="upcoming-card">
+      <div class="upcoming-card-img-wrap">
+        <img class="upcoming-card-img" id="uci_${c.id}" src="" alt="${c.artist}" onerror="imgFallback(this)" style="display:none">
+        <div class="upcoming-card-img-placeholder" id="upholder_${c.id}">🎟</div>
+        <div class="upcoming-ribbon">${daysBadge(days)}</div>
+      </div>
+      <div class="upcoming-card-body">
+        ${days>=0?countdownText(days):''}
+        <div class="upcoming-artist">${c.artist}</div>
+        <div class="upcoming-meta">
+          <div class="upcoming-meta-item"><div class="upcoming-meta-label">Data</div><div class="upcoming-meta-value">${dateStr}</div></div>
+          <div class="upcoming-meta-item"><div class="upcoming-meta-label">Location</div><div class="upcoming-meta-value">${c.venue||'—'}</div></div>
+          <div class="upcoming-meta-item"><div class="upcoming-meta-label">Città</div><div class="upcoming-meta-value">${[c.city,c.country].filter(Boolean).join(', ')||'—'}</div></div>
+          <div class="upcoming-meta-item"><div class="upcoming-meta-label">Settore</div><div class="upcoming-meta-value"><span class="upcoming-sector">${c.sector||'—'}</span></div></div>
+        </div>
+        ${c.notes?`<div class="upcoming-notes">"${c.notes}"</div>`:''}
+        ${ticketZoneHTML(c)}
+        <div class="upcoming-card-footer" style="margin-top:12px">
+          <span class="upcoming-price">${c.price?'€'+Number(c.price).toFixed(0):'—'}</span>
+          <div style="display:flex;gap:6px">
+            ${days<0?`<button class="btn btn-ghost btn-sm" onclick="markAsSeen('${c.id}')">✓ Visto</button>`:''}
+            <button class="btn btn-danger btn-sm" onclick="deleteUpcoming('${c.id}')">✕</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  f.forEach(async c=>{
+    const url=await fetchArtistImage(c.artist);
+    const img=document.getElementById(`uci_${c.id}`);
+    const holder=document.getElementById(`upholder_${c.id}`);
+    if(img){img.src=url;img.style.display='block';if(holder)holder.style.display='none';}
+  });
+}
+
+function updateUpcomingCount(){
+  document.getElementById('upcomingCount').textContent=upcoming.filter(c=>daysUntil(c.date)>=0).length;
+}
+
+/* TICKET MANAGEMENT */
+let ticketTargetId = null;
+
+function openTicketUploadFor(id) {
+  ticketTargetId = id;
+  document.getElementById('ticketFileInput').click();
+}
+
+function handleTicketFile(e) {
+  const file = e.target.files[0]; if(!file) return;
+  if(file.size > 4*1024*1024) { showToast('⚠ File troppo grande (max 4MB)'); return; }
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const ticket = { name: file.name, type: file.type, size: formatSize(file.size), data: ev.target.result };
+    if(ticketTargetId) {
+      // attaching to existing upcoming concert
+      const c = upcoming.find(x=>x.id===ticketTargetId);
+      if(c) { c.ticket = ticket; save(); renderUpcoming(); showToast('🎫 Biglietto allegato!'); }
+      ticketTargetId = null;
+    } else {
+      // attaching in modal
+      pendingTicket = ticket;
+      const zone = document.getElementById('ticketDropZone');
+      const nameEl = document.getElementById('ticketUploadName');
+      zone.classList.add('has-file');
+      zone.querySelector('.ticket-upload-icon').textContent = file.type==='application/pdf'?'📄':'🖼';
+      nameEl.style.display = 'block';
+      nameEl.textContent = file.name;
+    }
+  };
+  reader.readAsDataURL(file);
+  e.target.value = '';
+}
+
+function handleTicketDrop(e) {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0]; if(!file) return;
+  const input = document.getElementById('ticketFileInput');
+  const dt = new DataTransfer(); dt.items.add(file); input.files = dt.files;
+  handleTicketFile({target:input});
+}
+
+function removeTicket(id) {
+  const c = upcoming.find(x=>x.id===id);
+  if(c) { delete c.ticket; save(); renderUpcoming(); showToast('Biglietto rimosso'); }
+}
+
+function openTicketViewer(id) {
+  const c = upcoming.find(x=>x.id===id);
+  if(!c?.ticket) return;
+  viewerTicket = c.ticket;
+  const viewer = document.getElementById('ticketViewer');
+  document.getElementById('ticketViewerTitle').textContent = c.artist + ' — ' + c.ticket.name;
+  const img = document.getElementById('ticketViewerImg');
+  const frame = document.getElementById('ticketViewerFrame');
+  if(c.ticket.type === 'application/pdf') {
+    img.style.display='none';
+    frame.style.display='block';
+    frame.src = c.ticket.data;
+  } else {
+    frame.style.display='none';
+    img.style.display='block';
+    img.src = c.ticket.data;
+  }
+  viewer.classList.add('open');
+}
+
+function closeTicketViewer(e) {
+  if(e && e.target !== document.getElementById('ticketViewer')) return;
+  document.getElementById('ticketViewer').classList.remove('open');
+  document.getElementById('ticketViewerFrame').src='';
+}
+
+function downloadTicket() {
+  if(!viewerTicket) return;
+  const a=document.createElement('a'); a.href=viewerTicket.data; a.download=viewerTicket.name; a.click();
+}
+
+function downloadTicketById(id) {
+  const c=upcoming.find(x=>x.id===id);
+  if(!c?.ticket) return;
+  const a=document.createElement('a'); a.href=c.ticket.data; a.download=c.ticket.name; a.click();
+}
+
+function formatSize(bytes) {
+  if(bytes<1024) return bytes+'B';
+  if(bytes<1024*1024) return (bytes/1024).toFixed(0)+'KB';
+  return (bytes/1024/1024).toFixed(1)+'MB';
+}
+
+/* ACTIONS */
+function markAsSeen(id){
+  const c=upcoming.find(x=>x.id===id); if(!c)return;
+  upcoming=upcoming.filter(x=>x.id!==id);
+  concerts.push({...c,id:uid(),rating:0,notes:(c.notes||''),ticket:undefined});
+  save();render();showToast(`🎸 ${c.artist} spostato tra i passati!`);
+}
+function deleteUpcoming(id){upcoming=upcoming.filter(c=>c.id!==id);save();render();showToast('Concerto rimosso');}
+function deleteConcert(id){concerts=concerts.filter(c=>c.id!==id);save();render();showToast('Concerto eliminato');}
+
+/* MODAL */
+function openModal(type){
+  editingId=null;currentRating=0;pendingTicket=null;
+  ['artist','date','price','venue','sector','city','country','notes'].forEach(f=>document.getElementById('f_'+f).value='');
+  const zone=document.getElementById('ticketDropZone');
+  zone.classList.remove('has-file');
+  zone.querySelector('.ticket-upload-icon').textContent='🎫';
+  document.getElementById('ticketUploadName').style.display='none';
+  updateStars();
+  setModalType(type||currentPage);
+  document.getElementById('modalOverlay').classList.add('open');
+}
+function setModalType(type,btn){
+  modalTypeForSave=type;
+  document.querySelectorAll('.modal-tab').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  else{const tabs=document.querySelectorAll('.modal-tab');tabs[type==='past'?0:1].classList.add('active');}
+  const isPast=type==='past';
+  document.getElementById('modalTitle').textContent=isPast?'Nuovo Concerto':'Nuovo Concerto Programmato';
+  document.getElementById('ratingGroup').style.display=isPast?'flex':'none';
+  document.getElementById('ticketUploadGroup').style.display=isPast?'none':'flex';
+  document.getElementById('notesLabel').textContent=isPast?'Note / Ricordi':'Note / Aspettative';
+  document.getElementById('saveBtn').textContent=isPast?'Salva Concerto':'Salva in Arrivo';
+  document.getElementById('saveBtn').className=isPast?'btn btn-primary':'btn btn-primary-purple';
+}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
+function handleOverlayClick(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+function setRating(v){currentRating=currentRating===v?0:v;updateStars();}
+function updateStars(){document.querySelectorAll('#starRating .star-btn').forEach((b,i)=>b.classList.toggle('active',i<currentRating));}
+
+function saveConcert(){
+  const artist=document.getElementById('f_artist').value.trim();
+  const date=document.getElementById('f_date').value;
+  if(!artist||!date){showToast('⚠ Artista e data sono obbligatori');return;}
+  const obj={id:editingId||uid(),artist,date,
+    venue:document.getElementById('f_venue').value.trim(),
+    sector:document.getElementById('f_sector').value.trim(),
+    city:document.getElementById('f_city').value.trim(),
+    country:document.getElementById('f_country').value.trim(),
+    price:parseFloat(document.getElementById('f_price').value)||0,
+    notes:document.getElementById('f_notes').value.trim(),
+  };
+  if(modalTypeForSave==='past'){obj.rating=currentRating;concerts.push(obj);showToast(`🎸 ${artist} aggiunto!`);}
+  else{if(pendingTicket)obj.ticket=pendingTicket;upcoming.push(obj);showToast(`🎟 ${artist} programmato!`);}
+  save();closeModal();render();
+  if(modalTypeForSave==='upcoming')switchPage('upcoming',document.querySelectorAll('.tab-btn')[1]);
+}
+
+/* EXPORT / IMPORT */
+function exportData(){
+  // Export senza i dati base64 pesanti separatamente — li includiamo nel JSON
+  const blob=new Blob([JSON.stringify({concerts,upcoming},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=`concert-tracker-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();URL.revokeObjectURL(a.href);showToast('✅ Dati esportati (biglietti inclusi)');
+}
+function openImport(){document.getElementById('importFile').click();}
+function importData(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    try{
+      const data=JSON.parse(ev.target.result);
+      if(data.concerts){concerts=data.concerts;upcoming=data.upcoming||[];}
+      else if(Array.isArray(data)){concerts=data;upcoming=[];}
+      else throw new Error();
+      save();render();showToast('✅ Importazione completata');
+    }catch{showToast('⚠ File non valido');}
+    e.target.value='';
+  };
+  reader.readAsText(file);
+}
+
+let toastTimer;
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2800);}
+
+init();
+</script>
+</body>
+</html>
