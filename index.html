@@ -2,247 +2,329 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Concert Tracker</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Concerti">
 <meta name="theme-color" content="#0f3460">
 <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJiZyIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFhMWEyZSIvPjxzdG9wIG9mZnNldD0iNTAlIiBzdG9wLWNvbG9yPSIjMGYzNDYwIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMWEwNTMzIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9InRnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjN0I2MUZGIi8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMDA3MUUzIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSI0MCIgZmlsbD0idXJsKCNiZykiLz48ZWxsaXBzZSBjeD0iNjAiIGN5PSI3NSIgcng9IjUwIiByeT0iNDUiIGZpbGw9IiM3QjYxRkYiIG9wYWNpdHk9Ii4xOCIvPjxlbGxpcHNlIGN4PSIxMzAiIGN5PSIxNDAiIHJ4PSI1NSIgcnk9IjUwIiBmaWxsPSIjMDA3MUUzIiBvcGFjaXR5PSIuMTUiLz48cmVjdCB4PSIyOCIgeT0iOTgiIHdpZHRoPSIxMjQiIGhlaWdodD0iNzIiIHJ4PSIxMiIgZmlsbD0idXJsKCN0ZykiLz48Y2lyY2xlIGN4PSIyOCIgY3k9IjEzNCIgcj0iMTAiIGZpbGw9IiMxYTFhMmUiLz48Y2lyY2xlIGN4PSIxNTIiIGN5PSIxMzQiIHI9IjEwIiBmaWxsPSIjMWExYTJlIi8+PGxpbmUgeDE9IjM4IiB5MT0iMTM0IiB4Mj0iMTQyIiB5Mj0iMTM0IiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4yNSkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSI0IDMiLz48cmVjdCB4PSI0NSIgeT0iMTA4IiB3aWR0aD0iNjAiIGhlaWdodD0iOCIgcng9IjQiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC45KSIvPjxyZWN0IHg9IjQ1IiB5PSIxMjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI2IiByeD0iMyIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjUpIi8+PHJlY3QgeD0iNDUiIHk9IjE0NiIgd2lkdGg9IjUiIGhlaWdodD0iMTYiIHJ4PSIyLjUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC43KSIvPjxyZWN0IHg9IjU0IiB5PSIxNDYiIHdpZHRoPSIzIiBoZWlnaHQ9IjE2IiByeD0iMS41IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNSkiLz48cmVjdCB4PSI2MCIgeT0iMTQ2IiB3aWR0aD0iNiIgaGVpZ2h0PSIxNiIgcng9IjMiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC43KSIvPjxyZWN0IHg9IjcwIiB5PSIxNDYiIHdpZHRoPSIzIiBoZWlnaHQ9IjE2IiByeD0iMS41IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuNSkiLz48cmVjdCB4PSI3NiIgeT0iMTQ2IiB3aWR0aD0iNSIgaGVpZ2h0PSIxNiIgcng9IjIuNSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjcpIi8+PHJlY3QgeD0iODUiIHk9IjE0NiIgd2lkdGg9IjciIGhlaWdodD0iMTYiIHJ4PSIzLjUiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC41KSIvPjxyZWN0IHg9Ijk0IiB5PSI0MyIgd2lkdGg9IjgiIGhlaWdodD0iNDYiIHJ4PSI0IiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iLjkiLz48ZWxsaXBzZSBjeD0iODkiIGN5PSI4OSIgcng9IjEyIiByeT0iOCIgZmlsbD0id2hpdGUiIG9wYWNpdHk9Ii45IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgODkgODkpIi8+PHBhdGggZD0iTTEwMiA0M1ExMjIgNTIgMTE1IDcwIiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjgiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgb3BhY2l0eT0iLjkiLz48cG9seWdvbiBwb2ludHM9IjQyLDU1IDQ0LDQ4IDQ2LDU1IDUzLDU1IDQ3LDU5IDQ5LDY2IDQ0LDYyIDM5LDY2IDQxLDU5IDM1LDU1IiBmaWxsPSIjRkZENjBBIi8+PHBvbHlnb24gcG9pbnRzPSIxMzUsNjIgMTM2LjUsNTcgMTM4LDYyIDE0Myw2MiAxMzksNjUgMTQwLjUsNzAgMTM2LjUsNjcgMTMyLjUsNzAgMTM0LDY1IDEzMCw2MiIgZmlsbD0iI0ZGRDYwQSIgb3BhY2l0eT0iLjciLz48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjgwIiByeD0iNDAiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=">
-<!-- v1.6.0 -->
+<!-- v1.7.0 -->
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #F5F5F7; --surface: #FFFFFF; --border: #E5E5EA;
-    --text: #1D1D1F; --text2: #6E6E73;
-    --accent: #0071E3; --accent-light: #E8F1FB;
-    --gold: #FFD60A; --red: #FF3B30;
-    --purple: #7B61FF; --purple-light: #F0EEFF;
-    --green: #30D158; --green-light: #E8F8EC;
-    --radius: 16px; --radius-sm: 10px;
-    --shadow: 0 2px 12px rgba(0,0,0,0.07);
-    --shadow-hover: 0 8px 32px rgba(0,0,0,0.13);
-    --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #F5F5F7; --surface: #FFFFFF; --border: #E5E5EA;
+  --text: #1D1D1F; --text2: #6E6E73;
+  --accent: #0071E3; --accent-light: #E8F1FB;
+  --gold: #FFD60A; --red: #FF3B30;
+  --purple: #7B61FF; --purple-light: #F0EEFF;
+  --green: #30D158;
+  --radius: 16px; --radius-sm: 10px;
+  --shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,0.13);
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; padding-top: var(--safe-top); }
 
-  header { background: rgba(255,255,255,0.88); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 24px; }
-  .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; cursor:pointer; }
-  .logo-icon { width: 34px; height: 34px; flex-shrink: 0; border-radius: 8px; overflow: hidden; display: block; }
-  .header-actions { display: flex; gap: 8px; align-items: center; }
+/* ── HEADER ── */
+header {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+  padding: 0 16px;
+}
+.header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 10px; }
+.logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 16px; cursor: pointer; flex-shrink: 0; }
+.logo-icon { width: 32px; height: 32px; flex-shrink: 0; border-radius: 7px; overflow: hidden; display: block; }
+.logo-text { display: flex; align-items: baseline; gap: 5px; }
+.logo-version { font-size: 10px; font-weight: 500; color: var(--text2); }
 
-  /* SYNC STATUS */
-  .sync-indicator { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); padding: 6px 12px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); cursor: default; }
-  .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: #D1D1D6; flex-shrink: 0; }
-  .sync-dot.ok { background: var(--green); }
-  .sync-dot.syncing { background: var(--gold); animation: pulse 1s infinite; }
-  .sync-dot.error { background: var(--red); }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+/* Desktop tab bar — hidden on mobile */
+.desktop-tabs { display: flex; gap: 4px; background: var(--bg); border-radius: 980px; padding: 3px; border: 1px solid var(--border); }
+.tab-btn { padding: 6px 14px; border-radius: 980px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; background: transparent; color: var(--text2); transition: all 0.18s; font-family: var(--font); white-space: nowrap; }
+.tab-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+.tab-btn .tab-count { display: inline-block; background: var(--purple); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 99px; margin-left: 4px; vertical-align: middle; }
 
-  .tab-bar { display: flex; gap: 4px; background: var(--bg); border-radius: 980px; padding: 3px; border: 1px solid var(--border); }
-  .tab-btn { padding: 6px 16px; border-radius: 980px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; background: transparent; color: var(--text2); transition: all 0.18s; font-family: var(--font); }
-  .tab-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-  .tab-btn .tab-count { display: inline-block; background: var(--purple); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 5px; border-radius: 99px; margin-left: 4px; vertical-align: middle; }
+.header-right { display: flex; gap: 6px; align-items: center; }
+.sync-indicator { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text2); padding: 6px 10px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; white-space: nowrap; }
+.sync-dot { width: 7px; height: 7px; border-radius: 50%; background: #D1D1D6; flex-shrink: 0; }
+.sync-dot.ok { background: var(--green); }
+.sync-dot.syncing { background: var(--gold); animation: blink 1s infinite; }
+.sync-dot.error { background: var(--red); }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 980px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; transition: all 0.18s ease; font-family: var(--font); white-space: nowrap; }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { background: #0077ED; }
-  .btn-primary-purple { background: var(--purple); color: #fff; }
-  .btn-primary-purple:hover { background: #6a50f0; }
-  .btn-ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-  .btn-ghost:hover { background: var(--bg); }
-  .btn-sm { padding: 6px 12px; font-size: 12px; }
-  .btn-danger { background: #FFF0EF; color: var(--red); border: 1px solid #FFD0CE; }
-  .btn-danger:hover { background: #FFE0DE; }
+.btn { display: inline-flex; align-items: center; gap: 5px; padding: 8px 14px; border-radius: 980px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; transition: all 0.18s; font-family: var(--font); white-space: nowrap; }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:active { background: #0077ED; }
+.btn-primary-purple { background: var(--purple); color: #fff; }
+.btn-primary-purple:active { background: #6a50f0; }
+.btn-ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+.btn-ghost:active { background: var(--bg); }
+.btn-sm { padding: 6px 11px; font-size: 12px; }
+.btn-danger { background: #FFF0EF; color: var(--red); border: 1px solid #FFD0CE; }
+.btn-icon { width: 36px; height: 36px; padding: 0; border-radius: 10px; justify-content: center; font-size: 17px; }
 
-  main { max-width: 1200px; margin: 0 auto; padding: 32px 24px 80px; }
-  .page { display: none; }
-  .page.active { display: block; }
+/* ── BOTTOM NAV (mobile only) ── */
+.bottom-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.94);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-top: 1px solid var(--border);
+  padding: 8px 16px calc(8px + var(--safe-bottom));
+  gap: 0;
+}
+.bottom-nav-btn {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
+  background: none; border: none; cursor: pointer; font-family: var(--font);
+  padding: 6px 0; border-radius: 10px; transition: opacity 0.15s;
+}
+.bottom-nav-btn .nav-icon { font-size: 22px; line-height: 1; }
+.bottom-nav-btn .nav-label { font-size: 10px; font-weight: 500; color: var(--text2); }
+.bottom-nav-btn.active .nav-label { color: var(--accent); font-weight: 600; }
+.bottom-nav-btn.active .nav-icon { filter: none; }
+.bottom-nav-badge { display: inline-block; background: var(--purple); color: #fff; font-size: 9px; font-weight: 700; padding: 1px 4px; border-radius: 99px; margin-left: 2px; vertical-align: top; }
 
-  .section-title { font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; }
+/* ── FAB (mobile add button) ── */
+.fab {
+  display: none;
+  position: fixed; bottom: calc(72px + var(--safe-bottom)); right: 18px; z-index: 99;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: var(--accent); color: #fff;
+  border: none; font-size: 26px; cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,113,227,0.4);
+  align-items: center; justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.fab:active { transform: scale(0.93); box-shadow: 0 2px 10px rgba(0,113,227,0.3); }
+.fab.purple { background: var(--purple); box-shadow: 0 4px 20px rgba(123,97,255,0.4); }
 
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 12px; margin-bottom: 28px; }
-  .stat-card { background: var(--surface); border-radius: var(--radius); padding: 20px 18px; border: 1px solid var(--border); box-shadow: var(--shadow); position: relative; overflow: hidden; }
-  .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); border-radius: 3px 3px 0 0; }
-  .stat-card.purple::before { background: var(--purple); }
-  .stat-card.green::before { background: var(--green); }
-  .stat-label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 10px; }
-  .stat-value { font-size: 30px; font-weight: 700; letter-spacing: -1.5px; }
-  .stat-sub { font-size: 11px; color: var(--text2); margin-top: 4px; }
+/* ── MAIN ── */
+main { max-width: 1200px; margin: 0 auto; padding: 20px 16px 100px; }
+.page { display: none; }
+.page.active { display: block; }
 
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
-  @media(max-width:700px) { .two-col { grid-template-columns: 1fr; } }
-  .panel { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
-  .panel-header { padding: 18px 20px 0; font-size: 15px; font-weight: 700; }
-  .panel-body { padding: 14px 20px 20px; }
+/* ── STATS ── */
+.stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+.stat-card { background: var(--surface); border-radius: var(--radius); padding: 16px 14px; border: 1px solid var(--border); box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); border-radius: 3px 3px 0 0; }
+.stat-card.purple::before { background: var(--purple); }
+.stat-card.green::before { background: var(--green); }
+.stat-label { font-size: 10px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 6px; }
+.stat-value { font-size: 26px; font-weight: 700; letter-spacing: -1px; }
+.stat-sub { font-size: 10px; color: var(--text2); margin-top: 3px; }
 
-  .year-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); }
-  .year-row:last-child { border-bottom: none; }
-  .year-label { font-size: 14px; font-weight: 700; width: 44px; flex-shrink: 0; }
-  .year-bar-wrap { flex: 1; height: 5px; background: var(--bg); border-radius: 99px; overflow: hidden; }
-  .year-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--purple)); border-radius: 99px; }
-  .year-info { font-size: 11px; color: var(--text2); text-align: right; white-space: nowrap; min-width: 115px; }
+/* ── PANELS ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+.panel { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
+.panel-header { padding: 14px 16px 0; font-size: 14px; font-weight: 700; }
+.panel-body { padding: 10px 16px 16px; }
 
-  .artist-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); }
-  .artist-row:last-child { border-bottom: none; }
-  .artist-rank { font-size: 12px; font-weight: 700; color: var(--text2); width: 18px; flex-shrink: 0; text-align: center; }
-  .artist-thumb { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; background: var(--bg); flex-shrink: 0; border: 1px solid var(--border); }
-  .artist-info { flex: 1; min-width: 0; }
-  .artist-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .artist-count { font-size: 11px; color: var(--text2); }
-  .badge { background: var(--accent-light); color: var(--accent); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 99px; white-space: nowrap; }
+.year-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.year-row:last-child { border-bottom: none; }
+.year-label { font-size: 13px; font-weight: 700; width: 40px; flex-shrink: 0; }
+.year-bar-wrap { flex: 1; height: 5px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+.year-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--purple)); border-radius: 99px; }
+.year-info { font-size: 10px; color: var(--text2); text-align: right; white-space: nowrap; min-width: 95px; }
 
-  .filters-bar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; align-items: center; }
-  .search-input { flex: 1; min-width: 180px; padding: 10px 16px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 14px; color: var(--text); outline: none; transition: border-color 0.18s; }
-  .search-input:focus { border-color: var(--accent); }
-  select.filter-select { padding: 10px 30px 10px 14px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 14px; color: var(--text); outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
+.artist-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+.artist-row:last-child { border-bottom: none; }
+.artist-rank { font-size: 11px; font-weight: 700; color: var(--text2); width: 16px; flex-shrink: 0; text-align: center; }
+.artist-thumb { width: 36px; height: 36px; border-radius: 9px; object-fit: cover; background: var(--bg); flex-shrink: 0; border: 1px solid var(--border); }
+.artist-info { flex: 1; min-width: 0; }
+.artist-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.artist-count { font-size: 10px; color: var(--text2); }
+.badge { background: var(--accent-light); color: var(--accent); font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 99px; white-space: nowrap; }
 
-  .concerts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(278px, 1fr)); gap: 16px; }
-  .concert-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+/* ── FILTERS ── */
+.filters-bar { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; align-items: center; }
+.search-input { flex: 1; min-width: 140px; padding: 10px 14px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 15px; color: var(--text); outline: none; transition: border-color 0.18s; }
+.search-input:focus { border-color: var(--accent); }
+select.filter-select { padding: 10px 28px 10px 12px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 13px; color: var(--text); outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+
+/* ── SECTION TITLE ── */
+.section-sep { margin: 20px 0 12px; }
+.section-title { font-size: 19px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 3px; }
+
+/* ── PAST CARDS — mobile: horizontal list style ── */
+.concerts-grid { display: flex; flex-direction: column; gap: 12px; }
+.concert-card {
+  background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
+  box-shadow: var(--shadow); overflow: hidden;
+  display: flex; flex-direction: row; align-items: stretch;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.concert-card:active { transform: scale(0.98); }
+.card-img-col { width: 100px; flex-shrink: 0; position: relative; background: var(--bg); overflow: hidden; }
+.card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card-img-placeholder { width: 100%; height: 100%; min-height: 90px; display: flex; align-items: center; justify-content: center; font-size: 32px; background: #EEF2FA; }
+.card-date-badge { position: absolute; bottom: 6px; left: 0; right: 0; text-align: center; background: rgba(0,0,0,0.55); color: #fff; font-size: 9px; font-weight: 600; padding: 3px 4px; }
+.card-body { flex: 1; padding: 12px 12px 10px; display: flex; flex-direction: column; min-width: 0; }
+.card-artist { font-size: 15px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-location { font-size: 12px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card-city { font-size: 11px; color: var(--text2); }
+.stars { display: flex; gap: 1px; margin-top: 5px; }
+.star { font-size: 12px; }
+.star.filled { color: var(--gold); }
+.star.empty { color: #D1D1D6; }
+.card-notes { font-size: 11px; color: var(--text2); margin-top: 5px; line-height: 1.45; font-style: italic; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.card-sector { font-size: 10px; background: var(--bg); padding: 2px 7px; border-radius: 5px; color: var(--text2); font-weight: 500; }
+.card-price { font-size: 14px; font-weight: 700; color: var(--accent); }
+.card-delete { background: none; border: none; color: #D1D1D6; font-size: 18px; cursor: pointer; padding: 4px; line-height: 1; margin-left: 4px; border-radius: 6px; flex-shrink: 0; }
+.card-delete:active { color: var(--red); background: #FFF0EF; }
+
+/* ── UPCOMING HERO ── */
+.upcoming-hero { background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 50%, #1a0533 100%); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; position: relative; overflow: hidden; }
+.upcoming-hero::before { content:''; position:absolute; top:-40%; right:-10%; width:220px; height:220px; background:radial-gradient(circle,rgba(123,97,255,0.3) 0%,transparent 70%); pointer-events:none; }
+.upcoming-hero-text h2 { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: -0.5px; margin-bottom: 4px; position: relative; z-index:1; }
+.upcoming-hero-text p { font-size: 13px; color: rgba(255,255,255,0.6); position: relative; z-index:1; }
+.upcoming-hero-stats { display: flex; gap: 20px; margin-top: 14px; position: relative; z-index:1; }
+.upcoming-stat-val { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -1px; }
+.upcoming-stat-label { font-size: 10px; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 1px; }
+
+/* ── UPCOMING CARDS ── */
+.upcoming-grid { display: flex; flex-direction: column; gap: 14px; }
+.upcoming-card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
+.upcoming-card-img-wrap { position: relative; aspect-ratio: 16/7; overflow: hidden; background: var(--bg); }
+.upcoming-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.upcoming-card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 36px; background: linear-gradient(135deg,#F0EEFF,#E8F1FB); }
+.upcoming-ribbon { position: absolute; top: 0; right: 0; }
+.days-badge { background: var(--purple); color: #fff; font-size: 11px; font-weight: 700; padding: 5px 12px; border-radius: 0 0 0 12px; white-space: nowrap; }
+.days-badge.soon { background: #FF9500; }
+.days-badge.very-soon { background: var(--red); }
+.days-badge.today { background: var(--green); }
+.upcoming-card-body { padding: 14px; }
+.upcoming-artist { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.upcoming-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+.upcoming-meta-label { font-size: 9px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1px; }
+.upcoming-meta-value { font-size: 12px; font-weight: 500; }
+.upcoming-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border); margin-top: 10px; }
+.upcoming-price { font-size: 16px; font-weight: 700; color: var(--purple); }
+.upcoming-sector { font-size: 10px; background: var(--purple-light); color: var(--purple); padding: 3px 8px; border-radius: 6px; font-weight: 600; }
+.upcoming-notes { font-size: 11px; color: var(--text2); font-style: italic; margin-top: 6px; line-height: 1.5; }
+.countdown-pill { display: inline-flex; align-items: center; gap: 4px; background: var(--purple-light); color: var(--purple); font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 99px; margin-bottom: 10px; }
+.countdown-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--purple); animation: blink 1.5s infinite; }
+
+/* ── TICKET ── */
+.ticket-zone { margin-top: 10px; padding: 10px; border-radius: var(--radius-sm); border: 1.5px dashed var(--border); background: var(--bg); cursor: pointer; text-align: center; transition: all 0.18s; }
+.ticket-zone:active { border-color: var(--purple); background: var(--purple-light); }
+.ticket-zone.has-ticket { border-style: solid; border-color: #B6E8C4; background: #F0FBF3; cursor: default; }
+.ticket-preview { display: flex; align-items: center; gap: 10px; text-align: left; }
+.ticket-thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); flex-shrink: 0; }
+.ticket-pdf-thumb { width: 44px; height: 44px; border-radius: 8px; background: #FFF0EF; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.ticket-info { flex: 1; min-width: 0; }
+.ticket-name { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ticket-size { font-size: 10px; color: var(--text2); }
+.ticket-actions-row { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+
+/* ── TICKET VIEWER ── */
+.ticket-viewer { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 500; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+.ticket-viewer.open { opacity: 1; pointer-events: all; }
+.ticket-viewer-header { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: 12px 16px; }
+.ticket-viewer-title { color: #fff; font-size: 14px; font-weight: 600; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-right: 10px; }
+.ticket-viewer-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.ticket-viewer-btn { padding: 8px 14px; border-radius: 980px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; font-family: var(--font); }
+.ticket-viewer-btn.download { background: var(--purple); color: #fff; }
+.ticket-viewer-btn.close { background: rgba(255,255,255,0.15); color: #fff; }
+.ticket-viewer-img { max-width: 95vw; max-height: calc(100vh - 100px); object-fit: contain; border-radius: 10px; }
+.ticket-viewer-iframe { width: 95vw; height: calc(100vh - 100px); border: none; border-radius: 10px; background: #fff; }
+
+/* ── UPLOAD ZONE ── */
+.ticket-upload-zone { border: 1.5px dashed var(--border); border-radius: var(--radius-sm); padding: 16px; text-align: center; cursor: pointer; transition: all 0.18s; background: var(--bg); }
+.ticket-upload-zone.has-file { border-style: solid; border-color: #B6E8C4; background: #F0FBF3; }
+.ticket-upload-icon { font-size: 26px; margin-bottom: 4px; }
+.ticket-upload-label { font-size: 13px; color: var(--text2); }
+.ticket-upload-name { font-size: 12px; font-weight: 600; color: #1A7A34; margin-top: 4px; }
+
+/* ── EMPTY STATE ── */
+.empty-state { text-align: center; padding: 60px 20px; color: var(--text2); }
+.empty-state .emoji { font-size: 44px; margin-bottom: 10px; }
+.empty-state p { font-size: 15px; margin-bottom: 16px; }
+
+/* ── MODAL ── */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(6px); z-index: 200; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.22s; }
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal { background: var(--surface); border-radius: 20px 20px 0 0; width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); -webkit-overflow-scrolling: touch; }
+.modal-overlay.open .modal { transform: translateY(0); }
+.modal-handle { width: 36px; height: 4px; background: #D1D1D6; border-radius: 2px; margin: 10px auto 0; }
+.modal-header { padding: 14px 20px 0; display: flex; align-items: center; justify-content: space-between; }
+.modal-title { font-size: 17px; font-weight: 700; }
+.modal-close { width: 28px; height: 28px; border-radius: 50%; border: none; background: var(--bg); color: var(--text2); font-size: 17px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.modal-body { padding: 16px 20px 32px; }
+.modal-tabs { display: flex; margin-bottom: 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+.modal-tab { flex: 1; padding: 10px; text-align: center; font-size: 13px; font-weight: 600; cursor: pointer; background: var(--surface); color: var(--text2); border: none; font-family: var(--font); transition: all 0.18s; }
+.modal-tab.active { background: var(--accent); color: #fff; }
+.modal-tab.active.purple { background: var(--purple); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group.full { grid-column: 1/-1; }
+label { font-size: 11px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
+input[type=text], input[type=date], input[type=number], textarea {
+  padding: 12px 13px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  font-family: var(--font); font-size: 16px; color: var(--text); background: var(--surface);
+  outline: none; transition: border-color 0.18s; -webkit-appearance: none; width: 100%;
+}
+input:focus, textarea:focus { border-color: var(--accent); }
+textarea { resize: vertical; min-height: 72px; }
+.star-rating { display: flex; gap: 6px; }
+.star-rating .star-btn { font-size: 30px; cursor: pointer; background: none; border: none; padding: 0; color: #D1D1D6; transition: color 0.12s; }
+.star-rating .star-btn.active { color: var(--gold); }
+
+/* ── SETTINGS ── */
+.settings-info { background: var(--accent-light); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 12px; color: #0057b3; line-height: 1.6; margin-bottom: 16px; }
+.settings-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+
+/* ── TOAST ── */
+.toast { position: fixed; bottom: calc(80px + var(--safe-bottom)); left: 50%; transform: translateX(-50%) translateY(60px); background: #1D1D1F; color: #fff; padding: 11px 18px; border-radius: 980px; font-size: 14px; font-weight: 500; z-index: 999; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); pointer-events: none; white-space: nowrap; }
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ── DESKTOP overrides ── */
+@media(min-width: 640px) {
+  main { padding: 28px 24px 80px; }
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+  .two-col { grid-template-columns: 1fr 1fr; }
+  .concerts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .concert-card { flex-direction: column; }
+  .card-img-col { width: 100%; aspect-ratio: 16/9; }
+  .card-img-placeholder { min-height: unset; }
+  .card-date-badge { bottom: unset; top: 10px; left: 10px; right: unset; text-align: unset; background: rgba(255,255,255,0.92); color: var(--text); font-size: 11px; padding: 4px 10px; border-radius: 8px; }
+  .upcoming-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
   .concert-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
-  .card-img-wrap { position: relative; aspect-ratio: 16/9; overflow: hidden; background: var(--bg); }
-  .card-img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
-  .concert-card:hover .card-img { transform: scale(1.03); }
-  .card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 48px; background: #EEF2FA; }
-  .card-date-badge { position: absolute; top: 10px; left: 10px; background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); border-radius: 8px; padding: 4px 10px; font-size: 11px; font-weight: 600; color: var(--text); }
-  .card-body { padding: 14px 16px 16px; }
-  .card-artist { font-size: 15px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 3px; }
-  .card-location { font-size: 12px; color: var(--text2); margin-bottom: 1px; }
-  .card-city { font-size: 11px; color: var(--text2); }
-  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); }
-  .card-sector { font-size: 11px; background: var(--bg); padding: 3px 8px; border-radius: 6px; color: var(--text2); font-weight: 500; }
-  .card-price { font-size: 14px; font-weight: 700; color: var(--accent); }
-  .stars { display: flex; gap: 2px; margin-top: 7px; }
-  .star { font-size: 13px; }
-  .star.filled { color: var(--gold); }
-  .star.empty { color: #D1D1D6; }
-  .card-notes { font-size: 11px; color: var(--text2); margin-top: 7px; line-height: 1.5; font-style: italic; }
-  .card-actions { display: flex; justify-content: flex-end; gap: 6px; margin-top: 10px; }
+  .modal { border-radius: var(--radius); transform: scale(0.94); max-height: 88vh; }
+  .modal-overlay { align-items: center; }
+  .modal-overlay.open .modal { transform: scale(1); }
+  .modal-handle { display: none; }
+  .bottom-nav { display: none !important; }
+  .fab { display: none !important; }
+  .desktop-tabs { display: flex; }
+  .toast { bottom: 24px; }
+  .upcoming-hero-stats { flex-direction: row; }
+}
 
-  .upcoming-hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); border-radius: var(--radius); padding: 32px; margin-bottom: 28px; position: relative; overflow: hidden; }
-  .upcoming-hero::before { content:''; position:absolute; top:-40%; right:-10%; width:300px; height:300px; background:radial-gradient(circle,rgba(123,97,255,0.3) 0%,transparent 70%); pointer-events:none; }
-  .upcoming-hero::after { content:''; position:absolute; bottom:-30%; left:10%; width:200px; height:200px; background:radial-gradient(circle,rgba(0,113,227,0.25) 0%,transparent 70%); pointer-events:none; }
-  .upcoming-hero-inner { position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
-  .upcoming-hero-text h2 { font-size:26px; font-weight:700; color:#fff; letter-spacing:-0.5px; margin-bottom:6px; }
-  .upcoming-hero-text p { font-size:14px; color:rgba(255,255,255,0.6); }
-  .upcoming-stats { display:flex; gap:24px; }
-  .upcoming-stat { text-align:center; }
-  .upcoming-stat-val { font-size:26px; font-weight:700; color:#fff; letter-spacing:-1px; }
-  .upcoming-stat-label { font-size:11px; color:rgba(255,255,255,0.55); text-transform:uppercase; letter-spacing:0.5px; margin-top:2px; }
+@media(max-width: 639px) {
+  .desktop-tabs { display: none; }
+  .bottom-nav { display: flex; }
+  .fab { display: flex; }
+  .sync-indicator span:last-child { display: none; }
+  header { padding: 0 12px; }
+  .header-right .btn-ghost { display: none; }
+}
 
-  .upcoming-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
-  .upcoming-card { background:var(--surface); border-radius:var(--radius); border:1px solid var(--border); box-shadow:var(--shadow); overflow:hidden; transition:transform 0.2s,box-shadow 0.2s; display:flex; flex-direction:column; }
-  .upcoming-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-hover); }
-  .upcoming-card-img-wrap { position:relative; aspect-ratio:16/7; overflow:hidden; background:var(--bg); }
-  .upcoming-card-img { width:100%; height:100%; object-fit:cover; display:block; }
-  .upcoming-card-img-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:44px; background:linear-gradient(135deg,#F0EEFF,#E8F1FB); }
-  .upcoming-ribbon { position:absolute; top:0; right:0; }
-  .days-badge { background:var(--purple); color:#fff; font-size:11px; font-weight:700; padding:5px 12px; border-radius:0 0 0 12px; white-space:nowrap; }
-  .days-badge.soon { background:#FF9500; }
-  .days-badge.very-soon { background:var(--red); }
-  .days-badge.today { background:var(--green); }
-  .upcoming-card-body { padding:16px; flex:1; display:flex; flex-direction:column; }
-  .upcoming-artist { font-size:16px; font-weight:700; margin-bottom:10px; }
-  .upcoming-meta { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px; }
-  .upcoming-meta-label { font-size:10px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:2px; }
-  .upcoming-meta-value { font-size:13px; font-weight:500; }
-  .upcoming-card-footer { display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid var(--border); margin-top:auto; }
-  .upcoming-price { font-size:17px; font-weight:700; color:var(--purple); }
-  .upcoming-sector { font-size:11px; background:var(--purple-light); color:var(--purple); padding:3px 8px; border-radius:6px; font-weight:600; }
-  .upcoming-notes { font-size:11px; color:var(--text2); font-style:italic; margin-top:6px; line-height:1.5; }
-  .countdown-pill { display:inline-flex; align-items:center; gap:4px; background:var(--purple-light); color:var(--purple); font-size:12px; font-weight:600; padding:5px 12px; border-radius:99px; margin-bottom:12px; }
-  .countdown-dot { width:6px; height:6px; border-radius:50%; background:var(--purple); animation:blink 1.5s infinite; }
-  @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
-
-  .ticket-zone { margin-top:12px; padding:12px; border-radius:var(--radius-sm); border:1.5px dashed var(--border); background:var(--bg); cursor:pointer; transition:all 0.18s; text-align:center; }
-  .ticket-zone:hover { border-color:var(--purple); background:var(--purple-light); }
-  .ticket-zone.has-ticket { border-style:solid; border-color:#B6E8C4; background:#F0FBF3; cursor:default; }
-  .ticket-zone-label { font-size:12px; color:var(--text2); margin-top:4px; }
-  .ticket-preview { display:flex; align-items:center; gap:10px; }
-  .ticket-thumb { width:48px; height:48px; object-fit:cover; border-radius:8px; border:1px solid var(--border); flex-shrink:0; }
-  .ticket-pdf-thumb { width:48px; height:48px; border-radius:8px; background:#FFF0EF; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
-  .ticket-info { flex:1; min-width:0; text-align:left; }
-  .ticket-name { font-size:12px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .ticket-size { font-size:11px; color:var(--text2); }
-  .ticket-actions-row { display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
-
-  .ticket-viewer { position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:500; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.2s; }
-  .ticket-viewer.open { opacity:1; pointer-events:all; }
-  .ticket-viewer-header { display:flex; align-items:center; justify-content:space-between; width:100%; max-width:860px; padding:0 16px 12px; }
-  .ticket-viewer-title { color:#fff; font-size:15px; font-weight:600; }
-  .ticket-viewer-actions { display:flex; gap:8px; }
-  .ticket-viewer-btn { padding:8px 16px; border-radius:980px; font-size:13px; font-weight:500; cursor:pointer; border:none; font-family:var(--font); }
-  .ticket-viewer-btn.download { background:var(--purple); color:#fff; }
-  .ticket-viewer-btn.close { background:rgba(255,255,255,0.15); color:#fff; }
-  .ticket-viewer-img { max-width:min(860px,95vw); max-height:78vh; object-fit:contain; border-radius:12px; }
-  .ticket-viewer-iframe { width:min(860px,95vw); height:78vh; border:none; border-radius:12px; background:#fff; }
-
-  .ticket-upload-zone { border:1.5px dashed var(--border); border-radius:var(--radius-sm); padding:18px; text-align:center; cursor:pointer; transition:all 0.18s; background:var(--bg); }
-  .ticket-upload-zone:hover { border-color:var(--purple); background:var(--purple-light); }
-  .ticket-upload-zone.has-file { border-style:solid; border-color:#B6E8C4; background:#F0FBF3; }
-  .ticket-upload-icon { font-size:28px; margin-bottom:6px; }
-  .ticket-upload-label { font-size:13px; color:var(--text2); }
-  .ticket-upload-name { font-size:12px; font-weight:600; color:#1A7A34; margin-top:4px; }
-
-  /* SETTINGS MODAL */
-  .settings-panel { background:var(--surface); border-radius:var(--radius); border:1px solid var(--border); box-shadow:var(--shadow-hover); padding:24px; max-width:480px; width:100%; }
-  .settings-title { font-size:18px; font-weight:700; margin-bottom:4px; }
-  .settings-sub { font-size:13px; color:var(--text2); margin-bottom:20px; line-height:1.5; }
-  .settings-field { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
-  .settings-field label { font-size:11px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; }
-  .settings-field input { padding:11px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); font-family:var(--font); font-size:14px; color:var(--text); outline:none; transition:border-color 0.18s; }
-  .settings-field input:focus { border-color:var(--accent); }
-  .settings-info { background:var(--accent-light); border-radius:var(--radius-sm); padding:12px 14px; font-size:12px; color:#0057b3; line-height:1.6; margin-bottom:16px; }
-  .settings-status { font-size:12px; color:var(--text2); margin-top:8px; }
-
-  .empty-state { grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text2); }
-  .empty-state .emoji { font-size:48px; margin-bottom:12px; }
-  .empty-state p { font-size:16px; margin-bottom:16px; }
-
-  .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.4); backdrop-filter:blur(4px); z-index:200; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.25s; }
-  .modal-overlay.open { opacity:1; pointer-events:all; }
-  @media(min-width:600px) { .modal-overlay { align-items:center; } }
-  .modal { background:var(--surface); border-radius:var(--radius) var(--radius) 0 0; width:100%; max-width:560px; max-height:92vh; overflow-y:auto; transform:translateY(100%); transition:transform 0.3s cubic-bezier(0.4,0,0.2,1); }
-  @media(min-width:600px) { .modal { border-radius:var(--radius); transform:scale(0.94); } }
-  .modal-overlay.open .modal { transform:translateY(0); }
-  @media(min-width:600px) { .modal-overlay.open .modal { transform:scale(1); } }
-  .modal-header { padding:20px 24px 0; display:flex; align-items:center; justify-content:space-between; }
-  .modal-title { font-size:19px; font-weight:700; }
-  .modal-close { width:30px; height:30px; border-radius:50%; border:none; background:var(--bg); color:var(--text2); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-  .modal-body { padding:20px 24px 32px; }
-  .modal-tabs { display:flex; gap:0; margin-bottom:20px; border:1px solid var(--border); border-radius:var(--radius-sm); overflow:hidden; }
-  .modal-tab { flex:1; padding:10px; text-align:center; font-size:13px; font-weight:600; cursor:pointer; background:var(--surface); color:var(--text2); border:none; font-family:var(--font); transition:all 0.18s; }
-  .modal-tab.active { background:var(--accent); color:#fff; }
-  .modal-tab.active.purple { background:var(--purple); }
-
-  .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  @media(max-width:480px) { .form-grid { grid-template-columns:1fr; } }
-  .form-group { display:flex; flex-direction:column; gap:6px; }
-  .form-group.full { grid-column:1/-1; }
-  label { font-size:11px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; }
-  input, textarea { padding:11px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); font-family:var(--font); font-size:14px; color:var(--text); background:var(--surface); outline:none; transition:border-color 0.18s; -webkit-appearance:none; }
-  input:focus, textarea:focus { border-color:var(--accent); }
-  textarea { resize:vertical; min-height:80px; }
-  .star-rating { display:flex; gap:6px; }
-  .star-rating .star-btn { font-size:28px; cursor:pointer; background:none; border:none; padding:0; color:#D1D1D6; transition:color 0.15s,transform 0.15s; }
-  .star-rating .star-btn.active { color:var(--gold); }
-  .star-rating .star-btn:hover { transform:scale(1.15); }
-
-  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(80px); background:#1D1D1F; color:#fff; padding:12px 20px; border-radius:980px; font-size:14px; font-weight:500; z-index:999; transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1); pointer-events:none; white-space:nowrap; }
-  .toast.show { transform:translateX(-50%) translateY(0); }
-
-  .section-sep { margin:32px 0 16px; }
-  #importFile, #ticketFileInput { display:none; }
-  ::-webkit-scrollbar { width:6px; }
-  ::-webkit-scrollbar-track { background:transparent; }
-  ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
-  @media(max-width:600px) { .header-actions .btn-ghost{display:none} .upcoming-stats{display:none} .sync-indicator span{display:none} }
+#importFile, #ticketFileInput { display: none; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="header-inner">
     <div class="logo" onclick="openSettings()">
@@ -277,33 +359,40 @@
         <polygon points="135,62 136.5,57 138,62 143,62 139,65 140.5,70 136.5,67 132.5,70 134,65 130,62" fill="#FFD60A" opacity=".7"/>
         <rect width="180" height="80" rx="40" fill="rgba(255,255,255,0.05)"/>
       </svg>
-      <span>Concert Tracker</span><span style="font-size:11px;font-weight:500;color:var(--text2);margin-left:2px;align-self:flex-end;padding-bottom:1px">v1.6.0</span>
+      <div class="logo-text">
+        <span>Concert Tracker</span>
+        <span class="logo-version">v1.7.0</span>
+      </div>
     </div>
-    <div class="header-actions">
-      <div class="sync-indicator" id="syncIndicator" title="Stato sync Gist" onclick="manualSync()">
+    <!-- Desktop tabs -->
+    <div class="desktop-tabs">
+      <button class="tab-btn active" onclick="switchPage('past',this)">Passati</button>
+      <button class="tab-btn" onclick="switchPage('upcoming',this)">In Arrivo <span class="tab-count" id="upcomingCountDesktop">0</span></button>
+    </div>
+    <div class="header-right">
+      <div class="sync-indicator" id="syncIndicator" onclick="manualSync()">
         <span class="sync-dot" id="syncDot"></span>
         <span id="syncLabel">Non configurato</span>
       </div>
-      <div class="tab-bar">
-        <button class="tab-btn active" onclick="switchPage('past',this)">Passati</button>
-        <button class="tab-btn" onclick="switchPage('upcoming',this)">In Arrivo <span class="tab-count" id="upcomingCount">0</span></button>
-      </div>
-      <button class="btn btn-ghost btn-sm" onclick="openImport()">⬆ Importa</button>
-      <button class="btn btn-ghost btn-sm" onclick="exportData()">⬇ Esporta</button>
-      <button class="btn btn-primary" id="addBtn" onclick="openModal('past')">+ Aggiungi</button>
+      <button class="btn btn-ghost btn-sm" onclick="openImport()">⬆</button>
+      <button class="btn btn-ghost btn-sm" onclick="exportData()">⬇</button>
+      <!-- Desktop add button -->
+      <button class="btn btn-primary" id="addBtnDesktop" onclick="openModal('past')" style="display:none">+ Aggiungi</button>
     </div>
   </div>
 </header>
 
+<!-- MAIN -->
 <main>
+  <!-- PAGE: PASSATI -->
   <div class="page active" id="page-past">
     <div class="stats-grid" id="statsGrid"></div>
     <div class="two-col">
       <div class="panel"><div class="panel-header">📅 Riepilogo Annuale</div><div class="panel-body" id="annualList"></div></div>
-      <div class="panel"><div class="panel-header">🏆 Artisti Più Visti</div><div class="panel-body" id="topArtists"></div></div>
+      <div class="panel"><div class="panel-header">🏆 Più Visti</div><div class="panel-body" id="topArtists"></div></div>
     </div>
     <div class="section-sep">
-      <div class="section-title">Cronologia Concerti</div>
+      <div class="section-title">Cronologia</div>
       <div class="filters-bar">
         <input class="search-input" id="searchInput" type="search" placeholder="🔍 Cerca artista…" oninput="renderConcerts()">
         <select class="filter-select" id="yearFilter" onchange="renderConcerts()"><option value="">Tutti gli anni</option></select>
@@ -313,26 +402,51 @@
     <div class="concerts-grid" id="concertsGrid"></div>
   </div>
 
+  <!-- PAGE: IN ARRIVO -->
   <div class="page" id="page-upcoming">
     <div class="upcoming-hero">
-      <div class="upcoming-hero-inner">
-        <div class="upcoming-hero-text"><h2>🎟 In Arrivo</h2><p>I tuoi prossimi live da non perdere</p></div>
-        <div class="upcoming-stats" id="upcomingHeroStats"></div>
-      </div>
+      <div class="upcoming-hero-text"><h2>🎟 In Arrivo</h2><p>I tuoi prossimi live</p></div>
+      <div class="upcoming-hero-stats" id="upcomingHeroStats"></div>
     </div>
-    <div class="section-sep" style="margin-top:0">
-      <div class="filters-bar">
-        <input class="search-input" id="upcomingSearch" type="search" placeholder="🔍 Cerca artista…" oninput="renderUpcoming()">
-        <select class="filter-select" id="upcomingCityFilter" onchange="renderUpcoming()"><option value="">Tutte le città</option></select>
-      </div>
+    <div class="filters-bar">
+      <input class="search-input" id="upcomingSearch" type="search" placeholder="🔍 Cerca artista…" oninput="renderUpcoming()">
+      <select class="filter-select" id="upcomingCityFilter" onchange="renderUpcoming()"><option value="">Tutte le città</option></select>
     </div>
     <div class="upcoming-grid" id="upcomingGrid"></div>
   </div>
 </main>
 
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav" id="bottomNav">
+  <button class="bottom-nav-btn active" id="bnPast" onclick="switchPage('past', document.querySelectorAll('.tab-btn')[0]); setBottomNav('past')">
+    <span class="nav-icon">🎸</span>
+    <span class="nav-label">Passati</span>
+  </button>
+  <button class="bottom-nav-btn" id="bnUpcoming" onclick="switchPage('upcoming', document.querySelectorAll('.tab-btn')[1]); setBottomNav('upcoming')">
+    <span class="nav-icon">🎟<span class="bottom-nav-badge" id="upcomingCountMobile" style="display:none">0</span></span>
+    <span class="nav-label">In Arrivo</span>
+  </button>
+  <button class="bottom-nav-btn" onclick="openImport()">
+    <span class="nav-icon">⬆️</span>
+    <span class="nav-label">Importa</span>
+  </button>
+  <button class="bottom-nav-btn" onclick="exportData()">
+    <span class="nav-icon">⬇️</span>
+    <span class="nav-label">Esporta</span>
+  </button>
+  <button class="bottom-nav-btn" onclick="openSettings()">
+    <span class="nav-icon">⚙️</span>
+    <span class="nav-label">Sync</span>
+  </button>
+</nav>
+
+<!-- FAB -->
+<button class="fab" id="fab" onclick="openModal(currentPage)">+</button>
+
 <!-- CONCERT MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
   <div class="modal">
+    <div class="modal-handle"></div>
     <div class="modal-header">
       <span class="modal-title" id="modalTitle">Nuovo Concerto</span>
       <button class="modal-close" onclick="closeModal()">×</button>
@@ -345,8 +459,8 @@
       <div class="form-grid">
         <div class="form-group full"><label>Artista / Band *</label><input type="text" id="f_artist" placeholder="es. Coldplay"></div>
         <div class="form-group"><label>Data *</label><input type="date" id="f_date"></div>
-        <div class="form-group"><label>Prezzo (€)</label><input type="number" id="f_price" placeholder="0.00" min="0" step="0.01"></div>
-        <div class="form-group"><label>Location / Stadio</label><input type="text" id="f_venue" placeholder="es. San Siro"></div>
+        <div class="form-group"><label>Prezzo €</label><input type="number" id="f_price" placeholder="0.00" min="0" step="0.01"></div>
+        <div class="form-group"><label>Location</label><input type="text" id="f_venue" placeholder="es. San Siro"></div>
         <div class="form-group"><label>Settore</label><input type="text" id="f_sector" placeholder="es. Prato Gold"></div>
         <div class="form-group"><label>Città</label><input type="text" id="f_city" placeholder="es. Milano"></div>
         <div class="form-group"><label>Nazione</label><input type="text" id="f_country" placeholder="es. Italia"></div>
@@ -363,12 +477,12 @@
           <label>Biglietto (PDF o immagine)</label>
           <div class="ticket-upload-zone" id="ticketDropZone" onclick="document.getElementById('ticketFileInput').click()" ondragover="event.preventDefault()" ondrop="handleTicketDrop(event)">
             <div class="ticket-upload-icon">🎫</div>
-            <div class="ticket-upload-label">Clicca o trascina il biglietto<br><span style="font-size:11px">PDF, JPG, PNG — max 4MB</span></div>
+            <div class="ticket-upload-label">Tocca per allegare il biglietto<br><span style="font-size:11px">PDF, JPG, PNG — max 4MB</span></div>
             <div class="ticket-upload-name" id="ticketUploadName" style="display:none"></div>
           </div>
         </div>
       </div>
-      <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
+      <div style="margin-top:18px;display:flex;gap:8px;justify-content:flex-end;">
         <button class="btn btn-ghost" onclick="closeModal()">Annulla</button>
         <button class="btn btn-primary" id="saveBtn" onclick="saveConcert()">Salva</button>
       </div>
@@ -379,32 +493,22 @@
 <!-- SETTINGS MODAL -->
 <div class="modal-overlay" id="settingsOverlay" onclick="handleSettingsOverlayClick(event)">
   <div class="modal">
+    <div class="modal-handle"></div>
     <div class="modal-header">
-      <span class="modal-title">⚙️ Impostazioni Sync</span>
+      <span class="modal-title">⚙️ Sync GitHub Gist</span>
       <button class="modal-close" onclick="closeSettings()">×</button>
     </div>
     <div class="modal-body">
-      <div class="settings-info">
-        Il sync salva automaticamente i tuoi dati su un <strong>GitHub Gist privato</strong> ogni volta che aggiungi o modifichi un concerto. Funziona da qualsiasi dispositivo con queste credenziali.
-      </div>
-      <div class="settings-field">
-        <label>GitHub Personal Access Token</label>
-        <input type="password" id="s_token" placeholder="ghp_…" autocomplete="off">
-      </div>
-      <div class="settings-field">
-        <label>GitHub Username</label>
-        <input type="text" id="s_username" placeholder="es. marcotorquatoek">
-      </div>
-      <div class="settings-field">
-        <label>Gist ID <span style="font-weight:400;text-transform:none;letter-spacing:0">(lascia vuoto per crearne uno nuovo)</span></label>
-        <input type="text" id="s_gistId" placeholder="verrà creato automaticamente">
-      </div>
-      <div id="settingsStatus" class="settings-status"></div>
-      <div style="margin-top:20px;display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;">
-        <button class="btn btn-danger btn-sm" onclick="clearGistConfig()">🗑 Rimuovi config</button>
+      <div class="settings-info">Salva i dati su un <strong>Gist privato</strong> — accessibile da qualsiasi dispositivo.</div>
+      <div class="settings-field"><label>GitHub Token</label><input type="password" id="s_token" placeholder="ghp_…" autocomplete="off"></div>
+      <div class="settings-field"><label>GitHub Username</label><input type="text" id="s_username" placeholder="es. marcotorquatoek"></div>
+      <div class="settings-field"><label>Gist ID <span style="font-weight:400;text-transform:none">(vuoto = crea nuovo)</span></label><input type="text" id="s_gistId" placeholder="creato automaticamente"></div>
+      <div id="settingsStatus" style="font-size:12px;color:var(--text2);margin-bottom:12px;min-height:16px;"></div>
+      <div style="display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;">
+        <button class="btn btn-danger btn-sm" onclick="clearGistConfig()">🗑 Rimuovi</button>
         <div style="display:flex;gap:8px;">
           <button class="btn btn-ghost" onclick="closeSettings()">Chiudi</button>
-          <button class="btn btn-primary" onclick="saveGistConfig()">Salva e Connetti</button>
+          <button class="btn btn-primary" onclick="saveGistConfig()">Connetti</button>
         </div>
       </div>
     </div>
@@ -416,8 +520,8 @@
   <div class="ticket-viewer-header" onclick="event.stopPropagation()">
     <span class="ticket-viewer-title" id="ticketViewerTitle">Biglietto</span>
     <div class="ticket-viewer-actions">
-      <button class="ticket-viewer-btn download" onclick="downloadTicket()">⬇ Scarica</button>
-      <button class="ticket-viewer-btn close" onclick="closeTicketViewer()">✕ Chiudi</button>
+      <button class="ticket-viewer-btn download" onclick="downloadTicket()">⬇</button>
+      <button class="ticket-viewer-btn close" onclick="closeTicketViewer()">✕</button>
     </div>
   </div>
   <img class="ticket-viewer-img" id="ticketViewerImg" src="" style="display:none" onclick="event.stopPropagation()">
@@ -429,7 +533,7 @@
 <input type="file" id="ticketFileInput" accept=".pdf,image/*" onchange="handleTicketFile(event)">
 
 <script>
-/* ── v1.3.0 ── */
+/* ── v1.7.0 ── */
 const STORAGE_KEY = 'concertTracker_v1';
 const GIST_CONFIG_KEY = 'concertTracker_gist';
 let concerts = [], upcoming = [];
@@ -438,181 +542,121 @@ const imageCache = {};
 let pendingTicket = null, viewerTicket = null, ticketTargetId = null;
 let syncTimeout = null;
 
-/* ── GIST CONFIG ── */
-function getGistConfig() {
-  try { return JSON.parse(localStorage.getItem(GIST_CONFIG_KEY)) || {}; } catch { return {}; }
+/* ── GIST ── */
+function getGistConfig(){try{return JSON.parse(localStorage.getItem(GIST_CONFIG_KEY))||{};}catch{return {};}}
+function saveGistConfig(){
+  const token=document.getElementById('s_token').value.trim();
+  const username=document.getElementById('s_username').value.trim();
+  const gistId=document.getElementById('s_gistId').value.trim();
+  if(!token||!username){setSettingsStatus('⚠ Token e username obbligatori','error');return;}
+  localStorage.setItem(GIST_CONFIG_KEY,JSON.stringify({token,username,gistId}));
+  setSettingsStatus('⏳ Connessione…','');
+  gistSync(true).then(()=>setSettingsStatus('✅ Connesso!','ok')).catch(e=>setSettingsStatus('❌ '+e.message,'error'));
 }
-function saveGistConfig() {
-  const token = document.getElementById('s_token').value.trim();
-  const username = document.getElementById('s_username').value.trim();
-  const gistId = document.getElementById('s_gistId').value.trim();
-  if (!token || !username) { setSettingsStatus('⚠ Token e username sono obbligatori.', 'error'); return; }
-  localStorage.setItem(GIST_CONFIG_KEY, JSON.stringify({ token, username, gistId }));
-  setSettingsStatus('⏳ Connessione in corso…', 'syncing');
-  gistSync(true).then(() => {
-    setSettingsStatus('✅ Connesso! Sync attivo.', 'ok');
-    updateSyncUI('ok', 'Sincronizzato');
-  }).catch(e => setSettingsStatus('❌ Errore: ' + e.message, 'error'));
-}
-function clearGistConfig() {
+function clearGistConfig(){
   localStorage.removeItem(GIST_CONFIG_KEY);
-  document.getElementById('s_token').value = '';
-  document.getElementById('s_username').value = '';
-  document.getElementById('s_gistId').value = '';
-  updateSyncUI('off', 'Non configurato');
-  setSettingsStatus('Config rimossa.', '');
+  ['s_token','s_username','s_gistId'].forEach(id=>document.getElementById(id).value='');
+  updateSyncUI('off','Non configurato');
+  setSettingsStatus('Config rimossa.','');
 }
-function setSettingsStatus(msg, type) {
-  const el = document.getElementById('settingsStatus');
-  el.textContent = msg;
-  el.style.color = type === 'error' ? 'var(--red)' : type === 'ok' ? 'var(--green)' : 'var(--text2)';
+function setSettingsStatus(msg,type){
+  const el=document.getElementById('settingsStatus');
+  el.textContent=msg;
+  el.style.color=type==='error'?'var(--red)':type==='ok'?'var(--green)':'var(--text2)';
 }
-function openSettings() {
-  const cfg = getGistConfig();
-  document.getElementById('s_token').value = cfg.token || '';
-  document.getElementById('s_username').value = cfg.username || 'marcotorquatoek';
-  document.getElementById('s_gistId').value = cfg.gistId || '';
-  document.getElementById('settingsStatus').textContent = '';
+function openSettings(){
+  const cfg=getGistConfig();
+  document.getElementById('s_token').value=cfg.token||'';
+  document.getElementById('s_username').value=cfg.username||'marcotorquatoek';
+  document.getElementById('s_gistId').value=cfg.gistId||'';
+  document.getElementById('settingsStatus').textContent='';
   document.getElementById('settingsOverlay').classList.add('open');
 }
-function closeSettings() { document.getElementById('settingsOverlay').classList.remove('open'); }
-function handleSettingsOverlayClick(e) { if (e.target === document.getElementById('settingsOverlay')) closeSettings(); }
+function closeSettings(){document.getElementById('settingsOverlay').classList.remove('open');}
+function handleSettingsOverlayClick(e){if(e.target===document.getElementById('settingsOverlay'))closeSettings();}
 
-/* ── SYNC UI ── */
-function updateSyncUI(state, label) {
-  const dot = document.getElementById('syncDot');
-  const lbl = document.getElementById('syncLabel');
-  dot.className = 'sync-dot' + (state === 'ok' ? ' ok' : state === 'syncing' ? ' syncing' : state === 'error' ? ' error' : '');
-  lbl.textContent = label;
+function updateSyncUI(state,label){
+  const dot=document.getElementById('syncDot'),lbl=document.getElementById('syncLabel');
+  dot.className='sync-dot'+(state==='ok'?' ok':state==='syncing'?' syncing':state==='error'?' error':'');
+  lbl.textContent=label;
 }
-
-/* ── GIST API ── */
-async function gistSync(force = false) {
-  const cfg = getGistConfig();
-  if (!cfg.token) return;
-  updateSyncUI('syncing', 'Sincronizzazione…');
-  const payload = { concerts, upcoming };
-  const body = {
-    description: 'Concert Tracker — database',
-    public: false,
-    files: { 'concert-tracker-data.json': { content: JSON.stringify(payload, null, 2) } }
-  };
-  try {
-    let res, data;
-    if (cfg.gistId) {
-      // PATCH existing gist
-      res = await fetch(`https://api.github.com/gists/${cfg.gistId}`, {
-        method: 'PATCH',
-        headers: { 'Authorization': `token ${cfg.token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });
-    } else {
-      // POST new gist
-      res = await fetch('https://api.github.com/gists', {
-        method: 'POST',
-        headers: { 'Authorization': `token ${cfg.token}`, 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });
+async function gistSync(){
+  const cfg=getGistConfig();if(!cfg.token)return;
+  updateSyncUI('syncing','Sync…');
+  const body={description:'Concert Tracker data',public:false,files:{'concert-tracker-data.json':{content:JSON.stringify({concerts,upcoming},null,2)}}};
+  try{
+    let res;
+    if(cfg.gistId){
+      res=await fetch(`https://api.github.com/gists/${cfg.gistId}`,{method:'PATCH',headers:{'Authorization':`token ${cfg.token}`,'Content-Type':'application/json'},body:JSON.stringify(body)});
+    }else{
+      res=await fetch('https://api.github.com/gists',{method:'POST',headers:{'Authorization':`token ${cfg.token}`,'Content-Type':'application/json'},body:JSON.stringify(body)});
     }
-    if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
-    data = await res.json();
-    if (!cfg.gistId) {
-      // Save gist ID for future updates
-      cfg.gistId = data.id;
-      localStorage.setItem(GIST_CONFIG_KEY, JSON.stringify(cfg));
-      document.getElementById('s_gistId').value = data.id;
-    }
-    updateSyncUI('ok', 'Sincronizzato');
-  } catch (e) {
-    updateSyncUI('error', 'Errore sync');
-    throw e;
-  }
+    if(!res.ok)throw new Error(`GitHub ${res.status}`);
+    const data=await res.json();
+    if(!cfg.gistId){cfg.gistId=data.id;localStorage.setItem(GIST_CONFIG_KEY,JSON.stringify(cfg));document.getElementById('s_gistId').value=data.id;}
+    updateSyncUI('ok','Sincronizzato');
+  }catch(e){updateSyncUI('error','Errore sync');throw e;}
 }
-
-async function gistLoad() {
-  const cfg = getGistConfig();
-  if (!cfg.token || !cfg.gistId) return false;
-  updateSyncUI('syncing', 'Caricamento…');
-  try {
-    const res = await fetch(`https://api.github.com/gists/${cfg.gistId}`, {
-      headers: { 'Authorization': `token ${cfg.token}` }
-    });
-    if (!res.ok) throw new Error(`GitHub API: ${res.status}`);
-    const data = await res.json();
-    const content = data.files?.['concert-tracker-data.json']?.content;
-    if (content) {
-      const parsed = JSON.parse(content);
-      if (parsed.concerts) { concerts = parsed.concerts; upcoming = parsed.upcoming || []; }
-      else if (Array.isArray(parsed)) { concerts = parsed; }
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ concerts, upcoming }));
-      updateSyncUI('ok', 'Sincronizzato');
+async function gistLoad(){
+  const cfg=getGistConfig();if(!cfg.token||!cfg.gistId)return false;
+  updateSyncUI('syncing','Caricamento…');
+  try{
+    const res=await fetch(`https://api.github.com/gists/${cfg.gistId}`,{headers:{'Authorization':`token ${cfg.token}`}});
+    if(!res.ok)throw new Error(`GitHub ${res.status}`);
+    const data=await res.json();
+    const content=data.files?.['concert-tracker-data.json']?.content;
+    if(content){
+      const parsed=JSON.parse(content);
+      if(parsed.concerts){concerts=parsed.concerts;upcoming=parsed.upcoming||[];}
+      else if(Array.isArray(parsed)){concerts=parsed;}
+      localStorage.setItem(STORAGE_KEY,JSON.stringify({concerts,upcoming}));
+      updateSyncUI('ok','Sincronizzato');
       return true;
     }
-  } catch (e) {
-    updateSyncUI('error', 'Errore caricamento');
-    console.error(e);
-  }
+  }catch(e){updateSyncUI('error','Errore caricamento');console.error(e);}
   return false;
 }
-
-function scheduleSyncAfterChange() {
-  clearTimeout(syncTimeout);
-  syncTimeout = setTimeout(() => gistSync().catch(console.error), 1500);
+function scheduleSyncAfterChange(){clearTimeout(syncTimeout);syncTimeout=setTimeout(()=>gistSync().catch(console.error),1500);}
+function manualSync(){
+  const cfg=getGistConfig();
+  if(!cfg.token){openSettings();return;}
+  gistSync().then(()=>showToast('☁️ Sync completato!')).catch(()=>showToast('❌ Errore sync'));
 }
 
-function manualSync() {
-  const cfg = getGistConfig();
-  if (!cfg.token) { openSettings(); return; }
-  gistSync().then(() => showToast('☁️ Sync completato!')).catch(() => showToast('❌ Errore sync'));
-}
+/* ── STORAGE ── */
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function loadLocal(){try{const d=localStorage.getItem(STORAGE_KEY);return d?JSON.parse(d):null;}catch{return null;}}
+function saveLocal(){localStorage.setItem(STORAGE_KEY,JSON.stringify({concerts,upcoming}));}
+function saveAll(){saveLocal();scheduleSyncAfterChange();}
 
-/* ── LOCAL STORAGE ── */
-const defaultConcerts = [
-  { id:uid(), artist:'Coldplay', date:'2023-07-13', venue:'Stadio Olimpico', sector:'Prato Gold', city:'Roma', country:'Italia', price:98.5, rating:5, notes:"Spettacolo incredibile, fuochi d'artificio durante Yellow. Un sogno." },
-  { id:uid(), artist:'Vasco Rossi', date:'2022-06-11', venue:'Stadio San Siro', sector:'Primo Anello Rosso', city:'Milano', country:'Italia', price:75, rating:5, notes:"San Siro sold out. Albachiara ha fatto venire i brividi." },
-  { id:uid(), artist:'Radiohead', date:'2012-07-03', venue:"Heineken Jammin' Festival", sector:'Area Generale', city:'Venezia', country:'Italia', price:50, rating:5, notes:"Creep come encore finale. Thom Yorke in forma strepitosa." },
-  { id:uid(), artist:'Daft Punk', date:'2007-08-23', venue:'Lowlands Festival', sector:'Bravo Stage', city:'Biddinghuizen', country:'Paesi Bassi', price:120, rating:5, notes:"Pyramid stage tour. Le più belle 2 ore della mia vita musicale." },
-];
-const defaultUpcoming = [
-  { id:uid(), artist:'Bruce Springsteen', date:'2025-06-20', venue:'Stadio San Siro', sector:'Prato', city:'Milano', country:'Italia', price:120, notes:'Finalmente il Boss torna in Italia!' },
-  { id:uid(), artist:'Blur', date:'2025-09-12', venue:'Unipol Forum', sector:'Tribuna', city:'Assago', country:'Italia', price:85, notes:"Damon Albarn live — non vedo l'ora." },
-];
-
-function uid() { return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
-function loadLocal() { try { const d=localStorage.getItem(STORAGE_KEY); return d?JSON.parse(d):null; } catch { return null; } }
-function saveLocal() { localStorage.setItem(STORAGE_KEY, JSON.stringify({concerts,upcoming})); }
-
-function saveAll() {
-  saveLocal();
-  scheduleSyncAfterChange();
-}
-
-async function init() {
-  // Try to load from Gist first
-  const fromGist = await gistLoad();
-  if (!fromGist) {
-    // Fallback to local
-    const s = loadLocal();
-    if (s && (s.concerts || s.upcoming)) { concerts = s.concerts||[]; upcoming = s.upcoming||[]; }
-    else if (Array.isArray(s)) { concerts=s; upcoming=[...defaultUpcoming]; }
-    else { concerts=[...defaultConcerts]; upcoming=[...defaultUpcoming]; }
+async function init(){
+  const fromGist=await gistLoad();
+  if(!fromGist){
+    const s=loadLocal();
+    if(s&&(s.concerts||s.upcoming)){concerts=s.concerts||[];upcoming=s.upcoming||[];}
+    else if(Array.isArray(s)){concerts=s;upcoming=[];}
+    // No default data — start empty
   }
-  const cfg = getGistConfig();
-  if (!cfg.token) updateSyncUI('off', 'Non configurato');
+  const cfg=getGistConfig();
+  if(!cfg.token)updateSyncUI('off','Non configurato');
+
+  // Desktop: show add button
+  if(window.innerWidth>=640)document.getElementById('addBtnDesktop').style.display='';
+
   render();
 }
 
 /* ── IMAGE ── */
-async function fetchArtistImage(artist) {
-  if(imageCache[artist]) return imageCache[artist];
-  try {
+async function fetchArtistImage(artist){
+  if(imageCache[artist])return imageCache[artist];
+  try{
     const r=await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(artist)}&prop=pageimages&format=json&pithumbsize=500&origin=*`);
     const d=await r.json();
     const p=Object.values(d.query.pages)[0];
     if(p?.thumbnail?.source){imageCache[artist]=p.thumbnail.source;return p.thumbnail.source;}
-  } catch {}
+  }catch{}
   const fb=`https://source.unsplash.com/500x300/?concert,music,${encodeURIComponent(artist)}`;
-  imageCache[artist]=fb; return fb;
+  imageCache[artist]=fb;return fb;
 }
 function imgFallback(el){el.style.display='none';if(el.nextElementSibling)el.nextElementSibling.style.display='flex';}
 
@@ -622,24 +666,34 @@ function switchPage(page,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  const ab=document.getElementById('addBtn');
-  if(page==='upcoming'){ab.className='btn btn-primary-purple';ab.textContent='+ Programma';}
-  else{ab.className='btn btn-primary';ab.textContent='+ Aggiungi';}
+  if(btn)btn.classList.add('active');
+  const fab=document.getElementById('fab');
+  const addBtnD=document.getElementById('addBtnDesktop');
+  if(page==='upcoming'){
+    fab.className='fab purple';
+    addBtnD.className='btn btn-primary-purple';addBtnD.textContent='+ Programma';
+  }else{
+    fab.className='fab';
+    addBtnD.className='btn btn-primary';addBtnD.textContent='+ Aggiungi';
+  }
+}
+function setBottomNav(page){
+  document.querySelectorAll('.bottom-nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(page==='past'?'bnPast':'bnUpcoming').classList.add('active');
 }
 
 /* ── RENDER ── */
 function render(){renderStats();renderAnnual();renderTopArtists();renderFilters();renderConcerts();renderUpcoming();updateUpcomingCount();}
 
 function renderStats(){
-  const total=concerts.length, spend=concerts.reduce((s,c)=>s+(c.price||0),0), avg=total?spend/total:0;
+  const total=concerts.length,spend=concerts.reduce((s,c)=>s+(c.price||0),0),avg=total?spend/total:0;
   const artists=new Set(concerts.map(c=>c.artist.toLowerCase())).size;
   const cities=new Set(concerts.map(c=>c.city.toLowerCase())).size;
   document.getElementById('statsGrid').innerHTML=[
-    {label:'Concerti Totali',val:total,sub:'live visti',cls:''},
-    {label:'Spesa Totale',val:`€${spend.toFixed(0)}`,sub:`media €${avg.toFixed(0)} / biglietto`,cls:''},
-    {label:'Artisti Unici',val:artists,sub:'artisti diversi',cls:'purple'},
-    {label:'Città / Location',val:cities,sub:'luoghi unici',cls:'green'},
+    {label:'Concerti',val:total,sub:'live visti',cls:''},
+    {label:'Spesa Totale',val:`€${spend.toFixed(0)}`,sub:`~€${avg.toFixed(0)} a biglietto`,cls:''},
+    {label:'Artisti',val:artists,sub:'unici',cls:'purple'},
+    {label:'Città',val:cities,sub:'luoghi diversi',cls:'green'},
   ].map(s=>`<div class="stat-card ${s.cls}"><div class="stat-label">${s.label}</div><div class="stat-value">${s.val}</div><div class="stat-sub">${s.sub}</div></div>`).join('');
 }
 
@@ -649,25 +703,25 @@ function renderAnnual(){
   const years=Object.keys(by).sort((a,b)=>b-a);
   const max=Math.max(...years.map(y=>by[y].count),1);
   const el=document.getElementById('annualList');
-  if(!years.length){el.innerHTML='<p style="color:var(--text2);font-size:14px;">Nessun dato</p>';return;}
+  if(!years.length){el.innerHTML='<p style="color:var(--text2);font-size:13px;padding:8px 0">Nessun dato ancora</p>';return;}
   el.innerHTML=years.map(y=>`<div class="year-row">
     <span class="year-label">${y}</span>
     <div class="year-bar-wrap"><div class="year-bar" style="width:${(by[y].count/max*100).toFixed(0)}%"></div></div>
-    <span class="year-info">${by[y].count} concerti · €${by[y].spend.toFixed(0)}</span>
+    <span class="year-info">${by[y].count} · €${by[y].spend.toFixed(0)}</span>
   </div>`).join('');
 }
 
 async function renderTopArtists(){
   const counts={};
   concerts.forEach(c=>{counts[c.artist]=(counts[c.artist]||0)+1;});
-  const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,6);
+  const sorted=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,5);
   const el=document.getElementById('topArtists');
-  if(!sorted.length){el.innerHTML='<p style="color:var(--text2);font-size:14px;">Nessun dato</p>';return;}
+  if(!sorted.length){el.innerHTML='<p style="color:var(--text2);font-size:13px;padding:8px 0">Nessun dato ancora</p>';return;}
   el.innerHTML=sorted.map(([a,n],i)=>`<div class="artist-row">
     <span class="artist-rank">${i+1}</span>
     <img class="artist-thumb" id="art_${CSS.escape(a)}" src="" alt="${a}" onerror="imgFallback(this)">
-    <span style="display:none;width:40px;height:40px;border-radius:10px;background:var(--accent-light);align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🎤</span>
-    <div class="artist-info"><div class="artist-name">${a}</div><div class="artist-count">${n} concert${n>1?'i':''}</div></div>
+    <span style="display:none;width:36px;height:36px;border-radius:9px;background:var(--accent-light);align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🎤</span>
+    <div class="artist-info"><div class="artist-name">${a}</div><div class="artist-count">${n}×</div></div>
     <span class="badge">${n}×</span>
   </div>`).join('');
   sorted.forEach(async([a])=>{const url=await fetchArtistImage(a);const img=document.getElementById('art_'+CSS.escape(a));if(img)img.src=url;});
@@ -675,8 +729,8 @@ async function renderTopArtists(){
 
 function renderFilters(){
   const years=[...new Set(concerts.map(c=>c.date.slice(0,4)))].sort((a,b)=>b-a);
-  const cities=[...new Set(concerts.map(c=>c.city))].sort();
-  const yCities=[...new Set(upcoming.map(c=>c.city))].sort();
+  const cities=[...new Set(concerts.map(c=>c.city).filter(Boolean))].sort();
+  const yCities=[...new Set(upcoming.map(c=>c.city).filter(Boolean))].sort();
   const yf=document.getElementById('yearFilter'),cf=document.getElementById('cityFilter'),ucf=document.getElementById('upcomingCityFilter');
   const yv=yf.value,cv=cf.value;
   yf.innerHTML='<option value="">Tutti gli anni</option>'+years.map(y=>`<option value="${y}">${y}</option>`).join('');
@@ -695,31 +749,43 @@ function renderConcerts(){
     return true;
   }).sort((a,b)=>b.date.localeCompare(a.date));
   const grid=document.getElementById('concertsGrid');
-  if(!f.length){grid.innerHTML=`<div class="empty-state"><div class="emoji">🎸</div><p>Nessun concerto trovato</p></div>`;return;}
+  if(!f.length){
+    grid.innerHTML=`<div class="empty-state"><div class="emoji">${concerts.length?'🔍':'🎸'}</div><p>${concerts.length?'Nessun risultato':'Nessun concerto ancora — aggiungine uno!'}</p></div>`;
+    return;
+  }
   grid.innerHTML=f.map(c=>{
     const stars=[1,2,3,4,5].map(i=>`<span class="star ${c.rating&&i<=c.rating?'filled':'empty'}">★</span>`).join('');
     const dateStr=new Date(c.date+'T12:00').toLocaleDateString('it-IT',{day:'2-digit',month:'short',year:'numeric'});
     return `<div class="concert-card">
-      <div class="card-img-wrap">
-        <img class="card-img" id="ci_${c.id}" src="" alt="${c.artist}" onerror="imgFallback(this)">
-        <div class="card-img-placeholder" style="display:none">🎵</div>
+      <div class="card-img-col">
+        <img class="card-img" id="ci_${c.id}" src="" alt="${c.artist}" onerror="imgFallback(this)" style="display:none">
+        <div class="card-img-placeholder">🎵</div>
         <span class="card-date-badge">${dateStr}</span>
       </div>
       <div class="card-body">
-        <div class="card-artist">${c.artist}</div>
-        <div class="card-location">${c.venue||'—'}</div>
-        <div class="card-city">${[c.city,c.country].filter(Boolean).join(', ')}</div>
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:4px">
+          <div style="min-width:0">
+            <div class="card-artist">${c.artist}</div>
+            <div class="card-location">${c.venue||'—'}</div>
+            <div class="card-city">${[c.city,c.country].filter(Boolean).join(', ')}</div>
+          </div>
+          <button class="card-delete" onclick="deleteConcert('${c.id}')" title="Elimina">×</button>
+        </div>
         ${c.rating?`<div class="stars">${stars}</div>`:''}
-        ${c.notes?`<div class="card-notes">"${c.notes.slice(0,80)}${c.notes.length>80?'…':''}"</div>`:''}
+        ${c.notes?`<div class="card-notes">${c.notes}</div>`:''}
         <div class="card-footer">
           <span class="card-sector">${c.sector||'—'}</span>
           <span class="card-price">${c.price?'€'+Number(c.price).toFixed(0):'—'}</span>
         </div>
-        <div class="card-actions"><button class="btn btn-danger btn-sm" onclick="deleteConcert('${c.id}')">✕ Elimina</button></div>
       </div>
     </div>`;
   }).join('');
-  f.forEach(async c=>{const url=await fetchArtistImage(c.artist);const img=document.getElementById(`ci_${c.id}`);if(img){img.src=url;img.style.display='block';}});
+  f.forEach(async c=>{
+    const url=await fetchArtistImage(c.artist);
+    const img=document.getElementById(`ci_${c.id}`);
+    if(img){img.src=url;img.style.display='block';if(img.previousElementSibling?.classList.contains('card-img-placeholder')){}
+    if(img.nextElementSibling)img.nextElementSibling.style.display='none';}
+  });
 }
 
 /* ── UPCOMING ── */
@@ -727,18 +793,18 @@ function daysUntil(d){const t=new Date();t.setHours(0,0,0,0);const x=new Date(d+
 function daysBadge(days){
   if(days<0)return '';
   if(days===0)return `<div class="days-badge today">Oggi! 🔥</div>`;
-  if(days<=7)return `<div class="days-badge very-soon">tra ${days} giorni</div>`;
-  if(days<=30)return `<div class="days-badge soon">tra ${days} giorni</div>`;
-  return `<div class="days-badge">tra ${days} giorni</div>`;
+  if(days<=7)return `<div class="days-badge very-soon">tra ${days}gg</div>`;
+  if(days<=30)return `<div class="days-badge soon">tra ${days}gg</div>`;
+  return `<div class="days-badge">tra ${days}gg</div>`;
 }
 function countdownText(days){
   if(days<0)return '';
-  if(days===0)return `<div class="countdown-pill"><span class="countdown-dot"></span>Oggi è il giorno!</div>`;
+  if(days===0)return `<div class="countdown-pill"><span class="countdown-dot"></span>Oggi!</div>`;
   if(days===1)return `<div class="countdown-pill"><span class="countdown-dot"></span>Domani!</div>`;
-  return `<div class="countdown-pill"><span class="countdown-dot"></span>${days} giorni al concerto</div>`;
+  return `<div class="countdown-pill"><span class="countdown-dot"></span>${days} giorni</div>`;
 }
 function ticketZoneHTML(c){
-  if(!c.ticket)return `<div class="ticket-zone" onclick="openTicketUploadFor('${c.id}')"><div style="font-size:20px">🎫</div><div class="ticket-zone-label">Allega biglietto</div></div>`;
+  if(!c.ticket)return `<div class="ticket-zone" onclick="openTicketUploadFor('${c.id}')"><div style="font-size:18px">🎫</div><div style="font-size:11px;color:var(--text2);margin-top:3px">Allega biglietto</div></div>`;
   const isPDF=c.ticket.type==='application/pdf';
   return `<div class="ticket-zone has-ticket">
     <div class="ticket-preview">
@@ -747,12 +813,11 @@ function ticketZoneHTML(c){
     </div>
     <div class="ticket-actions-row">
       <button class="btn btn-primary-purple btn-sm" onclick="openTicketViewer('${c.id}')">👁 Apri</button>
-      <button class="btn btn-ghost btn-sm" onclick="downloadTicketById('${c.id}')">⬇ Scarica</button>
+      <button class="btn btn-ghost btn-sm" onclick="downloadTicketById('${c.id}')">⬇</button>
       <button class="btn btn-danger btn-sm" onclick="removeTicket('${c.id}')">✕</button>
     </div>
   </div>`;
 }
-
 function renderUpcoming(){
   const q=document.getElementById('upcomingSearch').value.trim().toLowerCase();
   const cf=document.getElementById('upcomingCityFilter').value;
@@ -769,7 +834,10 @@ function renderUpcoming(){
     ${future[0]?`<div class="upcoming-stat"><div class="upcoming-stat-val">${daysUntil(future[0].date)}</div><div class="upcoming-stat-label">Giorni al prossimo</div></div>`:''}
   `:'';
   const grid=document.getElementById('upcomingGrid');
-  if(!f.length){grid.innerHTML=`<div class="empty-state"><div class="emoji">🎟</div><p>Nessun concerto in programma</p><button class="btn btn-primary-purple" onclick="openModal('upcoming')">+ Aggiungi</button></div>`;return;}
+  if(!f.length){
+    grid.innerHTML=`<div class="empty-state"><div class="emoji">🎟</div><p>Nessun concerto in programma</p><button class="btn btn-primary-purple" onclick="openModal('upcoming')">+ Aggiungi</button></div>`;
+    return;
+  }
   grid.innerHTML=f.map(c=>{
     const days=daysUntil(c.date);
     const dateStr=new Date(c.date+'T12:00').toLocaleDateString('it-IT',{day:'2-digit',month:'long',year:'numeric'});
@@ -783,14 +851,14 @@ function renderUpcoming(){
         ${days>=0?countdownText(days):''}
         <div class="upcoming-artist">${c.artist}</div>
         <div class="upcoming-meta">
-          <div class="upcoming-meta-item"><div class="upcoming-meta-label">Data</div><div class="upcoming-meta-value">${dateStr}</div></div>
-          <div class="upcoming-meta-item"><div class="upcoming-meta-label">Location</div><div class="upcoming-meta-value">${c.venue||'—'}</div></div>
-          <div class="upcoming-meta-item"><div class="upcoming-meta-label">Città</div><div class="upcoming-meta-value">${[c.city,c.country].filter(Boolean).join(', ')||'—'}</div></div>
-          <div class="upcoming-meta-item"><div class="upcoming-meta-label">Settore</div><div class="upcoming-meta-value"><span class="upcoming-sector">${c.sector||'—'}</span></div></div>
+          <div><div class="upcoming-meta-label">Data</div><div class="upcoming-meta-value">${dateStr}</div></div>
+          <div><div class="upcoming-meta-label">Location</div><div class="upcoming-meta-value">${c.venue||'—'}</div></div>
+          <div><div class="upcoming-meta-label">Città</div><div class="upcoming-meta-value">${[c.city,c.country].filter(Boolean).join(', ')||'—'}</div></div>
+          <div><div class="upcoming-meta-label">Settore</div><div class="upcoming-meta-value"><span class="upcoming-sector">${c.sector||'—'}</span></div></div>
         </div>
         ${c.notes?`<div class="upcoming-notes">"${c.notes}"</div>`:''}
         ${ticketZoneHTML(c)}
-        <div class="upcoming-card-footer" style="margin-top:12px">
+        <div class="upcoming-card-footer">
           <span class="upcoming-price">${c.price?'€'+Number(c.price).toFixed(0):'—'}</span>
           <div style="display:flex;gap:6px">
             ${days<0?`<button class="btn btn-ghost btn-sm" onclick="markAsSeen('${c.id}')">✓ Visto</button>`:''}
@@ -807,14 +875,18 @@ function renderUpcoming(){
     if(img){img.src=url;img.style.display='block';if(holder)holder.style.display='none';}
   });
 }
-
-function updateUpcomingCount(){document.getElementById('upcomingCount').textContent=upcoming.filter(c=>daysUntil(c.date)>=0).length;}
+function updateUpcomingCount(){
+  const n=upcoming.filter(c=>daysUntil(c.date)>=0).length;
+  document.getElementById('upcomingCountDesktop').textContent=n;
+  const mob=document.getElementById('upcomingCountMobile');
+  if(n>0){mob.textContent=n;mob.style.display='';}else mob.style.display='none';
+}
 
 /* ── TICKET ── */
 function openTicketUploadFor(id){ticketTargetId=id;document.getElementById('ticketFileInput').click();}
 function handleTicketFile(e){
   const file=e.target.files[0];if(!file)return;
-  if(file.size>4*1024*1024){showToast('⚠ File troppo grande (max 4MB)');return;}
+  if(file.size>4*1024*1024){showToast('⚠ Max 4MB');return;}
   const reader=new FileReader();
   reader.onload=ev=>{
     const ticket={name:file.name,type:file.type,size:formatSize(file.size),data:ev.target.result};
@@ -822,17 +894,15 @@ function handleTicketFile(e){
       const c=upcoming.find(x=>x.id===ticketTargetId);
       if(c){c.ticket=ticket;saveAll();renderUpcoming();showToast('🎫 Biglietto allegato!');}
       ticketTargetId=null;
-    } else {
+    }else{
       pendingTicket=ticket;
       const zone=document.getElementById('ticketDropZone');
       zone.classList.add('has-file');
       zone.querySelector('.ticket-upload-icon').textContent=file.type==='application/pdf'?'📄':'🖼';
-      const nameEl=document.getElementById('ticketUploadName');
-      nameEl.style.display='block';nameEl.textContent=file.name;
+      const nameEl=document.getElementById('ticketUploadName');nameEl.style.display='block';nameEl.textContent=file.name;
     }
   };
-  reader.readAsDataURL(file);
-  e.target.value='';
+  reader.readAsDataURL(file);e.target.value='';
 }
 function handleTicketDrop(e){
   e.preventDefault();
@@ -867,8 +937,8 @@ function markAsSeen(id){
   concerts.push({...c,id:uid(),rating:0,ticket:undefined});
   saveAll();render();showToast(`🎸 ${c.artist} spostato tra i passati!`);
 }
-function deleteUpcoming(id){upcoming=upcoming.filter(c=>c.id!==id);saveAll();render();showToast('Concerto rimosso');}
-function deleteConcert(id){concerts=concerts.filter(c=>c.id!==id);saveAll();render();showToast('Concerto eliminato');}
+function deleteUpcoming(id){upcoming=upcoming.filter(c=>c.id!==id);saveAll();render();showToast('Rimosso');}
+function deleteConcert(id){concerts=concerts.filter(c=>c.id!==id);saveAll();render();showToast('Eliminato');}
 
 /* ── MODAL ── */
 function openModal(type){
@@ -885,20 +955,19 @@ function setModalType(type,btn){
   modalTypeForSave=type;
   document.querySelectorAll('.modal-tab').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active');
-  else{const tabs=document.querySelectorAll('.modal-tab');tabs[type==='past'?0:1].classList.add('active');}
+  else document.querySelectorAll('.modal-tab')[type==='past'?0:1].classList.add('active');
   const isPast=type==='past';
   document.getElementById('modalTitle').textContent=isPast?'Nuovo Concerto':'Concerto Programmato';
   document.getElementById('ratingGroup').style.display=isPast?'flex':'none';
   document.getElementById('ticketUploadGroup').style.display=isPast?'none':'flex';
   document.getElementById('notesLabel').textContent=isPast?'Note / Ricordi':'Note / Aspettative';
-  document.getElementById('saveBtn').textContent=isPast?'Salva':'Salva in Arrivo';
+  document.getElementById('saveBtn').textContent=isPast?'Salva':'Salva';
   document.getElementById('saveBtn').className=isPast?'btn btn-primary':'btn btn-primary-purple';
 }
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
 function handleOverlayClick(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
 function setRating(v){currentRating=currentRating===v?0:v;updateStars();}
 function updateStars(){document.querySelectorAll('#starRating .star-btn').forEach((b,i)=>b.classList.toggle('active',i<currentRating));}
-
 function saveConcert(){
   const artist=document.getElementById('f_artist').value.trim();
   const date=document.getElementById('f_date').value;
@@ -914,15 +983,18 @@ function saveConcert(){
   if(modalTypeForSave==='past'){obj.rating=currentRating;concerts.push(obj);showToast(`🎸 ${artist} aggiunto!`);}
   else{if(pendingTicket)obj.ticket=pendingTicket;upcoming.push(obj);showToast(`🎟 ${artist} programmato!`);}
   saveAll();closeModal();render();
-  if(modalTypeForSave==='upcoming')switchPage('upcoming',document.querySelectorAll('.tab-btn')[1]);
+  if(modalTypeForSave==='upcoming'){
+    switchPage('upcoming',document.querySelectorAll('.tab-btn')[1]);
+    setBottomNav('upcoming');
+  }
 }
 
 /* ── EXPORT / IMPORT ── */
 function exportData(){
   const blob=new Blob([JSON.stringify({concerts,upcoming},null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
-  a.download=`concert-tracker-${new Date().toISOString().slice(0,10)}.json`;
-  a.click();URL.revokeObjectURL(a.href);showToast('✅ Esportato (biglietti inclusi)');
+  a.download=`concerti-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();URL.revokeObjectURL(a.href);showToast('✅ Esportato');
 }
 function openImport(){document.getElementById('importFile').click();}
 function importData(e){
@@ -934,7 +1006,7 @@ function importData(e){
       if(data.concerts){concerts=data.concerts;upcoming=data.upcoming||[];}
       else if(Array.isArray(data)){concerts=data;upcoming=[];}
       else throw new Error();
-      saveAll();render();showToast('✅ Importazione completata');
+      saveAll();render();showToast('✅ Importato');
     }catch{showToast('⚠ File non valido');}
     e.target.value='';
   };
@@ -942,15 +1014,7 @@ function importData(e){
 }
 
 let toastTimer;
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2800);}
-
-/* ── PRE-FILL USERNAME ── */
-const _cfg = getGistConfig();
-if (!_cfg.username) {
-  const cfg = getGistConfig();
-  cfg.username = 'marcotorquatoek';
-  // Don't save yet — user needs to add token
-}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2600);}
 
 init();
 </script>
