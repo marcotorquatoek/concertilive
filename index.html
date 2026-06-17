@@ -2,14 +2,14 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Concert Tracker</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Concerti">
 <meta name="theme-color" content="#0f3460">
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFS0lEQVR4nO3cPXLbVhSAUZCTNonbzKTTFqJVpFKRPi68iMykzEwWocLuU6jKKuwtqPNMWttZgFLRoSj+AHjv4V1cnlPakg0Rn64uQQqbIYinp6dvex8DZTabzb/dj6HXfyzg/HoEvmjQIr5eS8XdPGgRc6hl3M2CFjKXtAi7etBCZqqaYW9r/UPDIGbmqdlNlQktZGopndbFE1rM1FTaU1HQYqaFkq5mrRxCZilTV5DJE1rMLGlqb5OCFjM9TOludNBipqex/VW9Dg29jQradCaCMR1eDFrMRHKpx7NBi5mIznVphyaVk0GbzkR2qs+jQYuZNTjWqZWDVF4EbTqzJoe9mtCk8ixo05k12u/WhCYVQZPK16CtG6zZrl8TmlQETSqbYbBukIcJTSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJpXtq9vXX3ofBNRiQpOKoElF0KSyHYZhsEeTwavb119MaFIRNKl8DdrawZrt+jWhSUXQpPIsaGsHa7TfrQlNKi+CNqVZk8NeTWhSORq0Kc0aHOv05IQWNZGd6tPKQSpngzaliehclxcntKiJ5FKPo1YOURPBmA7t0KQyOmhTmp7G9jdpQouaHqZ0N3nlEDVLmtrb5vuffn2a+599ev/2u7mfC+fMHZxFTwpNa1oo6ar4Koeoqam0p6KV45AVhLlqDcaq16FNa+ao2U3VCb3PtOaSFgOwWdA7wuZQy5/kzYPeJ+7rtdQ6umjQ+8SdX4/nVN2CPiTw9YtwUSBM0Nfm0/u3/1z6mFe3r39Y4lgy8fZRUvmm9wFkNGb60oagKxFxDIIuJORY7NAFxByPoGcSc0yCJhVBz2A6xyXooLyoMo+gSUXQM7SenqbzfIImFUHP1GqKms5lBF2gdnxiLufto5WUXMoTcj2CbsB7nfsJGfQvP/7e+xAY6a+Pf/Q+hGdCBS3k9YoSdoighZxH77C7X+UQcy69z2fXoHt/8bTR87x2C1rMufU6v91XDqipS9Cm83XocZ5NaFJZPGjT+bosfb5XeRuD+4ebq/sVqDd3j14qH8HKQSqCJhVBk4qgSUXQpCJoUhE0qQiaVFb5wooXGTjFhCYVQZPKKleO+4eb33ofwyVv7h7/7H0M18iEJhVBk4qgSWXxHfrwvg3e8J9Pz3tzdH9SuPvihb1+vW8yMwyBVo4IDwbzRTl/IW4Fts+kXp8oMQ9DoAm9E+nB4bJo5ytc0MMQ70HiuIjnKWTQMFfYoCN+9/O/qOcnbNAwh6BJRdCkImhSETSpCJpUwgbtJfDYop6fsEHDHCGDjvrdz3MRz1O4oCM+SJwW7XyFCjrag8M4kc5bmKAjPShMF+X8dX+Df5QHgnp6vnFp8aAFfH2WDLz7L8nOcf9w8/exP39z9/jzqY/Z/d2pzy39/HOfe+5jqWv7+cO7Te+DgFrCPCmEGgRNKoImle0wDIM9mgw+f3i3MaFJRdCk8jVoawdrtuvXhCYVQZPKs6CtHazRfrcmNKm8CNqUZk0OezWhSeVo0KY0a3Cs05MTulXUUW/DShutzvepPs9G2+q3WfzWyvVYOuizO7QpTYmlYx6GEU8K7dNEcqnHUVc5WkRtSufW4vyO6bDrZTtR59TzvI4O2j7NGD325n2TI215Hw9XP9ar5WCaMkxnTd3WN6cR9nq0/gk7dTMoWiN630aMvOauuEVPCl3So4WSroqvcoiamkp7qhqjFYS5ag3GqtehTWvmqNlNswBNay5pMQCbT1Rhc6jlT/JFVwRxX6+l1tFuO6+48+vxnOo/na/rcYPqemUAAAAASUVORK5CYII=">
-<!-- v1.9.0 -->
+<!-- v2.0.0 -->
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -27,7 +27,11 @@
   --safe-top: env(safe-area-inset-top, 0px);
 }
 html { scroll-behavior: smooth; }
-body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; padding-top: var(--safe-top); }
+body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; padding-top: var(--safe-top); cursor: default; }
+/* Nasconde la pallina nera di Safari su tutto il documento */
+* { cursor: default !important; }
+input, textarea, select { cursor: text !important; }
+button, a, [onclick], .btn, .tab-btn, .bottom-nav-btn, .fab, .modal-close, .logo, .sync-indicator, .ticket-zone, .ticket-upload-zone, .card-delete { cursor: pointer !important; }
 
 /* ── HEADER ── */
 header {
@@ -77,7 +81,7 @@ header {
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-top: 1px solid var(--border);
-  padding: 6px 16px calc(max(20px, var(--safe-bottom)) + 4px);
+  padding: 6px 16px calc(max(34px, env(safe-area-inset-bottom, 20px)) + 6px);
   gap: 0;
   -webkit-touch-callout: none;
   user-select: none;
@@ -146,9 +150,9 @@ main { max-width: 1200px; margin: 0 auto; padding: 20px 16px 100px; }
 
 /* ── FILTERS ── */
 .filters-bar { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; align-items: center; }
-.search-input { flex: 1; min-width: 140px; padding: 10px 14px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 15px; color: var(--text); outline: none; transition: border-color 0.18s; }
+.search-input { flex: 1; min-width: 140px; padding: 10px 14px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 16px; color: var(--text); outline: none; transition: border-color 0.18s; -webkit-appearance: none; }
 .search-input:focus { border-color: var(--accent); }
-select.filter-select { padding: 10px 28px 10px 12px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 13px; color: var(--text); outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+select.filter-select { padding: 10px 28px 10px 12px; border-radius: 980px; border: 1px solid var(--border); background: var(--surface); font-family: var(--font); font-size: 16px; color: var(--text); outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
 
 /* ── SECTION TITLE ── */
 .section-sep { margin: 20px 0 12px; }
@@ -274,7 +278,7 @@ input[type=text], input[type=date], input[type=number], textarea {
   outline: none; transition: border-color 0.18s; -webkit-appearance: none; width: 100%;
 }
 input:focus, textarea:focus { border-color: var(--accent); }
-textarea { resize: vertical; min-height: 72px; }
+textarea { resize: vertical; min-height: 72px; font-size: 16px; }
 .star-rating { display: flex; gap: 6px; }
 .star-rating .star-btn { font-size: 30px; cursor: pointer; background: none; border: none; padding: 0; color: #D1D1D6; transition: color 0.12s; }
 .star-rating .star-btn.active { color: var(--gold); }
@@ -363,7 +367,7 @@ textarea { resize: vertical; min-height: 72px; }
       </svg>
       <div class="logo-text">
         <span>Concert Tracker</span>
-        <span class="logo-version">v1.9.0</span>
+        <span class="logo-version">v2.0.0</span>
       </div>
     </div>
     <!-- Desktop tabs -->
@@ -501,16 +505,17 @@ textarea { resize: vertical; min-height: 72px; }
       <button class="modal-close" onclick="closeSettings()">×</button>
     </div>
     <div class="modal-body">
-      <div class="settings-info">Salva i dati su un <strong>Gist privato</strong> — accessibile da qualsiasi dispositivo.</div>
+      <div class="settings-info">Salva i dati su un <strong>Gist privato</strong> — accessibile da qualsiasi dispositivo.<br><strong>Dopo aver connesso, usa "⬇ Carica" per scaricare i dati dal Gist.</strong></div>
       <div class="settings-field"><label>GitHub Token</label><input type="password" id="s_token" placeholder="ghp_…" autocomplete="off"></div>
       <div class="settings-field"><label>GitHub Username</label><input type="text" id="s_username" placeholder="es. marcotorquatoek"></div>
       <div class="settings-field"><label>Gist ID <span style="font-weight:400;text-transform:none">(vuoto = crea nuovo)</span></label><input type="text" id="s_gistId" placeholder="creato automaticamente"></div>
       <div id="settingsStatus" style="font-size:12px;color:var(--text2);margin-bottom:12px;min-height:16px;"></div>
-      <div style="display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;">
+      <div style="display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;row-gap:10px;">
         <button class="btn btn-danger btn-sm" onclick="clearGistConfig()">🗑 Rimuovi</button>
-        <div style="display:flex;gap:8px;">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
           <button class="btn btn-ghost" onclick="closeSettings()">Chiudi</button>
-          <button class="btn btn-primary" onclick="saveGistConfig()">Connetti</button>
+          <button class="btn btn-ghost" onclick="manualLoad();closeSettings()">⬇ Carica dal Gist</button>
+          <button class="btn btn-primary" onclick="saveGistConfig()">Connetti e Salva</button>
         </div>
       </div>
     </div>
@@ -535,7 +540,7 @@ textarea { resize: vertical; min-height: 72px; }
 <input type="file" id="ticketFileInput" accept=".pdf,image/*" onchange="handleTicketFile(event)">
 
 <script>
-/* ── v1.9.0 ── */
+/* ── v2.0.0 ── */
 const STORAGE_KEY = 'concertTracker_v1';
 const GIST_CONFIG_KEY = 'concertTracker_gist';
 let concerts = [], upcoming = [];
@@ -603,26 +608,41 @@ async function gistLoad(){
   const cfg=getGistConfig();if(!cfg.token||!cfg.gistId)return false;
   updateSyncUI('syncing','Caricamento…');
   try{
-    const res=await fetch(`https://api.github.com/gists/${cfg.gistId}`,{headers:{'Authorization':`token ${cfg.token}`}});
+    const res=await fetch(`https://api.github.com/gists/${cfg.gistId}`,{
+      headers:{'Authorization':`token ${cfg.token}`,'Cache-Control':'no-cache'}
+    });
     if(!res.ok)throw new Error(`GitHub ${res.status}`);
     const data=await res.json();
     const content=data.files?.['concert-tracker-data.json']?.content;
     if(content){
       const parsed=JSON.parse(content);
       if(parsed.concerts){concerts=parsed.concerts;upcoming=parsed.upcoming||[];}
-      else if(Array.isArray(parsed)){concerts=parsed;}
+      else if(Array.isArray(parsed)){concerts=parsed;upcoming=[];}
       localStorage.setItem(STORAGE_KEY,JSON.stringify({concerts,upcoming}));
       updateSyncUI('ok','Sincronizzato');
       return true;
     }
-  }catch(e){updateSyncUI('error','Errore caricamento');console.error(e);}
-  return false;
+    updateSyncUI('ok','Connesso (vuoto)');
+    return false;
+  }catch(e){
+    updateSyncUI('error','Errore: '+e.message);
+    console.error('gistLoad error:',e);
+    return false;
+  }
 }
 function scheduleSyncAfterChange(){clearTimeout(syncTimeout);syncTimeout=setTimeout(()=>gistSync().catch(console.error),1500);}
 function manualSync(){
   const cfg=getGistConfig();
   if(!cfg.token){openSettings();return;}
-  gistSync().then(()=>showToast('☁️ Sync completato!')).catch(()=>showToast('❌ Errore sync'));
+  gistSync().then(()=>showToast('☁️ Dati salvati sul Gist!')).catch(e=>showToast('❌ '+e.message));
+}
+function manualLoad(){
+  const cfg=getGistConfig();
+  if(!cfg.token||!cfg.gistId){showToast('⚠ Configura prima il Gist');openSettings();return;}
+  gistLoad().then(ok=>{
+    if(ok){render();showToast('✅ Dati caricati dal Gist!');}
+    else showToast('⚠ Nessun dato trovato sul Gist');
+  });
 }
 
 /* ── STORAGE ── */
