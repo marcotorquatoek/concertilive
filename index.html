@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Concerti">
 <meta name="theme-color" content="#0f3460">
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFS0lEQVR4nO3cPXLbVhSAUZCTNonbzKTTFqJVpFKRPi68iMykzEwWocLuU6jKKuwtqPNMWttZgFLRoSj+AHjv4V1cnlPakg0Rn64uQQqbIYinp6dvex8DZTabzb/dj6HXfyzg/HoEvmjQIr5eS8XdPGgRc6hl3M2CFjKXtAi7etBCZqqaYW9r/UPDIGbmqdlNlQktZGopndbFE1rM1FTaU1HQYqaFkq5mrRxCZilTV5DJE1rMLGlqb5OCFjM9TOludNBipqex/VW9Dg29jQradCaCMR1eDFrMRHKpx7NBi5mIznVphyaVk0GbzkR2qs+jQYuZNTjWqZWDVF4EbTqzJoe9mtCk8ixo05k12u/WhCYVQZPK16CtG6zZrl8TmlQETSqbYbBukIcJTSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaA==">
-<!-- v2.3.0 -->
+<!-- v2.5.0 -->
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -28,9 +28,16 @@
 }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; padding-top: var(--safe-top); }
-/* Pallina nera Safari — nasconde il cursore su tutto il documento */
-html, body, * { cursor: none !important; -webkit-tap-highlight-color: transparent; }
-input, textarea { cursor: text !important; }
+-webkit-tap-highlight-color: transparent;
+/* Su desktop mostra cursore normale, su touch nasconde la pallina Safari */
+@media (hover: hover) and (pointer: fine) {
+  * { cursor: auto; }
+  button, [onclick], .btn, .tab-btn, .logo, .sync-indicator, .artist-row, .bottom-nav-btn, .fab, .modal-close, .ticket-zone, .ticket-upload-zone, .card-delete, .artist-hero-back, .artist-photo-btn, .concert-row-delete { cursor: pointer; }
+  input, textarea, select, .search-input { cursor: text; }
+}
+@media (hover: none) and (pointer: coarse) {
+  html, body, * { cursor: none !important; -webkit-tap-highlight-color: transparent; }
+}
 
 header { background: rgba(255,255,255,0.92); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 16px; }
 .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; gap: 10px; }
@@ -102,7 +109,8 @@ main { max-width: 1200px; margin: 0 auto; padding: 20px 16px 100px; }
 .year-bar-wrap { width: 100%; height: 6px; background: var(--bg); border-radius: 99px; overflow: hidden; }
 .year-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--purple)); border-radius: 99px; transition: width 0.6s cubic-bezier(0.4,0,0.2,1); }
 
-.artist-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+.artist-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; border-radius: 8px; padding: 8px 6px; margin: 0 -6px; }
+.artist-row:hover { background: var(--bg); }
 .artist-row:last-child { border-bottom: none; }
 .artist-rank { font-size: 11px; font-weight: 700; color: var(--text2); width: 16px; flex-shrink: 0; text-align: center; }
 .artist-thumb { width: 36px; height: 36px; border-radius: 9px; object-fit: cover; background: var(--bg); flex-shrink: 0; border: 1px solid var(--border); }
@@ -139,18 +147,18 @@ select.filter-select { padding: 10px 28px 10px 12px; border-radius: 980px; borde
 /* ARTIST PAGE */
 .artist-page { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 150; overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .artist-page.open { display: block; }
-.artist-hero { position: relative; height: 220px; background: linear-gradient(135deg,#1a1a2e,#0f3460); overflow: hidden; }
-.artist-hero-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
-.artist-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%); }
-.artist-hero-back { position: absolute; top: calc(var(--safe-top) + 12px); left: 14px; width: 34px; height: 34px; border-radius: 50%; background: rgba(0,0,0,0.4); border: none; color: #fff; font-size: 18px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-.artist-photo-btn { position: absolute; top: calc(var(--safe-top) + 12px); right: 14px; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.45); border: none; color: #fff; font-size: 12px; font-weight: 600; padding: 7px 12px; border-radius: 980px; backdrop-filter: blur(8px); font-family: var(--font); }
-.artist-hero-name { position: absolute; bottom: 16px; left: 16px; right: 16px; }
-.artist-hero-name h2 { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
-.artist-hero-name p { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+.artist-hero { position: relative; width: 100%; height: 260px; background: linear-gradient(135deg,#1a1a2e,#0f3460); overflow: hidden; flex-shrink: 0; }
+.artist-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; opacity: 0.7; display: block; }
+.artist-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%, transparent 100%); }
+.artist-hero-back { position: absolute; top: calc(var(--safe-top) + 12px); left: 14px; width: 36px; height: 36px; border-radius: 50%; background: rgba(0,0,0,0.5); border: none; color: #fff; font-size: 22px; line-height: 1; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); z-index: 2; cursor: pointer; }
+.artist-photo-btn { position: absolute; top: calc(var(--safe-top) + 12px); right: 14px; display: flex; align-items: center; gap: 5px; background: rgba(0,0,0,0.5); border: none; color: #fff; font-size: 12px; font-weight: 600; padding: 8px 13px; border-radius: 980px; backdrop-filter: blur(10px); font-family: var(--font); z-index: 2; cursor: pointer; }
+.artist-hero-name { position: absolute; bottom: 18px; left: 18px; right: 18px; z-index: 2; }
+.artist-hero-name h2 { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.5px; text-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+.artist-hero-name p { font-size: 13px; color: rgba(255,255,255,0.75); margin-top: 3px; }
 .artist-page-body { padding: 16px 16px 100px; max-width: 700px; margin: 0 auto; }
 .artist-stats-row { display: flex; gap: 10px; margin-bottom: 20px; }
-.artist-stat-pill { flex: 1; background: var(--surface); border-radius: var(--radius-sm); padding: 12px 10px; text-align: center; border: 1px solid var(--border); }
-.artist-stat-pill-val { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+.artist-stat-pill { flex: 1; background: var(--surface); border-radius: var(--radius-sm); padding: 14px 10px; text-align: center; border: 1px solid var(--border); box-shadow: var(--shadow); }
+.artist-stat-pill-val { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
 .artist-stat-pill-label { font-size: 10px; color: var(--text2); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.4px; }
 .artist-concerts-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
 
@@ -310,7 +318,7 @@ textarea { resize: vertical; min-height: 72px; font-size: 16px; }
         <polygon points="135,62 136.5,57 138,62 143,62 139,65 140.5,70 136.5,67 132.5,70 134,65 130,62" fill="#FFD60A" opacity=".7"/>
         <rect width="180" height="80" rx="40" fill="rgba(255,255,255,0.05)"/>
       </svg>
-      <div class="logo-text"><span>Concert Tracker</span><span class="logo-version">v2.3.0</span></div>
+      <div class="logo-text"><span>Concert Tracker</span><span class="logo-version">v2.5.0</span></div>
     </div>
     <div class="desktop-tabs">
       <button class="tab-btn active" onclick="switchPage('past',this)">Passati</button>
@@ -511,7 +519,7 @@ textarea { resize: vertical; min-height: 72px; font-size: 16px; }
 <input type="file" id="ticketFileInput" accept=".pdf,image/*" onchange="handleTicketFile(event)">
 
 <script>
-/* ── v2.3.0 ── */
+/* ── v2.5.0 ── */
 
 /* ── SUPABASE CONFIG ── */
 const SUPA_URL  = 'https://zdwzombpaixkcryfpkxg.supabase.co';
@@ -1005,38 +1013,43 @@ async function searchPhotos() {
   const q = document.getElementById('photoSearchQuery').value.trim();
   if(!q) return;
   const results = document.getElementById('photoSearchResults');
-  results.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text2);font-size:13px">Ricerca in corso…</div>';
+  results.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text2);font-size:13px">⏳ Ricerca in corso…</div>';
+
+  const photos = [];
+
+  // 1. Try Wikipedia first (good for famous artists)
   try {
-    // Wikipedia images
-    const wikiRes = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(q)}&prop=pageimages&format=json&pithumbsize=400&origin=*`);
-    const wikiData = await wikiRes.json();
-    const wikiPage = Object.values(wikiData.query.pages)[0];
-    const photos = [];
-    if(wikiPage?.thumbnail?.source) photos.push(wikiPage.thumbnail.source);
+    const r = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(q)}&prop=pageimages&format=json&pithumbsize=600&origin=*`);
+    const d = await r.json();
+    const p = Object.values(d.query.pages)[0];
+    if(p?.thumbnail?.source) photos.push({ url: p.thumbnail.source, label: 'Wikipedia' });
+  } catch {}
 
-    // Wikimedia Commons search
-    const commonsRes = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&srnamespace=6&format=json&origin=*&srlimit=8`);
-    const commonsData = await commonsRes.json();
-    const titles = (commonsData.query?.search||[]).map(r=>r.title);
-    for(const t of titles.slice(0,5)) {
-      const imgRes = await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(t)}&prop=imageinfo&iiprop=url&iiurlwidth=400&format=json&origin=*`);
-      const imgData = await imgRes.json();
-      const p = Object.values(imgData.query?.pages||{})[0];
-      const url = p?.imageinfo?.[0]?.thumburl;
-      if(url && !photos.includes(url)) photos.push(url);
-    }
+  // 2. Try Italian Wikipedia
+  try {
+    const r = await fetch(`https://it.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(q)}&prop=pageimages&format=json&pithumbsize=600&origin=*`);
+    const d = await r.json();
+    const p = Object.values(d.query.pages)[0];
+    if(p?.thumbnail?.source && !photos.find(x=>x.url===p.thumbnail.source))
+      photos.push({ url: p.thumbnail.source, label: 'Wikipedia IT' });
+  } catch {}
 
-    if(!photos.length) {
-      results.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text2);font-size:13px">Nessuna foto trovata — prova un termine diverso</div>';
-      return;
-    }
-    results.innerHTML = photos.map(url => `
-      <div onclick="selectPhoto('${url.replace(/'/g,"\\'")}');closePhotoSearch()" style="aspect-ratio:1;border-radius:10px;overflow:hidden;border:2px solid transparent;transition:border-color 0.15s">
-        <img src="${url}" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.parentElement.style.display='none'">
-      </div>`).join('');
-  } catch(e) {
-    results.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--red);font-size:13px">Errore nella ricerca</div>';
-  }
+  // 3. Generate Unsplash URLs with different seeds — always work, show concert/music photos
+  const seeds = [q, q+' singer', q+' concert', q+' performer', q+' music', q+' live', q+' stage', q+' artist'];
+  seeds.forEach(seed => {
+    const url = `https://source.unsplash.com/400x400/?${encodeURIComponent(seed)}`;
+    photos.push({ url, label: 'Unsplash' });
+  });
+
+  results.innerHTML = photos.map((p,i) => `
+    <div onclick="selectPhoto('${p.url.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}');closePhotoSearch()"
+      style="aspect-ratio:1;border-radius:10px;overflow:hidden;border:2px solid var(--border);transition:all 0.15s;cursor:pointer;position:relative;background:var(--bg)"
+      onmouseover="this.style.borderColor='var(--accent)';this.style.transform='scale(1.04)'"
+      onmouseout="this.style.borderColor='var(--border)';this.style.transform='scale(1)'">
+      <img src="${p.url}" loading="lazy"
+        style="width:100%;height:100%;object-fit:cover;display:block"
+        onerror="this.parentElement.style.display='none'">
+    </div>`).join('');
 }
 
 function selectPhoto(url) {
