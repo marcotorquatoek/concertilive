@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Concerti">
 <meta name="theme-color" content="#0f3460">
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFS0lEQVR4nO3cPXLbVhSAUZCTNonbzKTTFqJVpFKRPi68iMykzEwWocLuU6jKKuwtqPNMWttZgFLRoSj+AHjv4V1cnlPakg0Rn64uQQqbIYinp6dvex8DZTabzb/dj6HXfyzg/HoEvmjQIr5eS8XdPGgRc6hl3M2CFjKXtAi7etBCZqqaYW9r/UPDIGbmqdlNlQktZGopndbFE1rM1FTaU1HQYqaFkq5mrRxCZilTV5DJE1rMLGlqb5OCFjM9TOludNBipqex/VW9Dg29jQradCaCMR1eDFrMRHKpx7NBi5mIznVphyaVk0GbzkR2qs+jQYuZNTjWqZWDVF4EbTqzJoe9mtCk8ixo05k12u/WhCYVQZPK16CtG6zZrl8TmlQETSqbYbBukIcJTSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaA==">
-<!-- v3.6.0 -->
+<!-- v3.9.0 -->
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -296,7 +296,7 @@ textarea { resize: vertical; min-height: 68px; font-size: 16px; }
         <path d="M102 43Q122 52 115 70" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" opacity=".9"/>
         <polygon points="42,55 44,48 46,55 53,55 47,59 49,66 44,62 39,66 41,59 35,55" fill="#FFD60A"/>
       </svg>
-      <span>Concert Tracker <span class="logo-version">v3.6.0</span></span>
+      <span>Concert Tracker <span class="logo-version">v3.9.0</span></span>
     </div>
     <div class="header-right">
       <div class="sync-pill" id="syncPill" onclick="manualSync()">
@@ -440,20 +440,27 @@ textarea { resize: vertical; min-height: 68px; font-size: 16px; }
   </div>
 </div>
 
-<!-- PHOTO SEARCH MODAL -->
+<!-- PHOTO URL MODAL -->
 <div class="modal-overlay" id="photoOverlay" onclick="handleOvClick(event,'photoOverlay')">
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-hd">
-      <span class="modal-title">🔍 Cerca foto</span>
+      <span class="modal-title">📸 Foto Artista</span>
       <button class="modal-close" onclick="closePhotoSearch()">×</button>
     </div>
     <div class="modal-bd">
-      <div style="display:flex;gap:8px;margin-bottom:14px">
-        <input type="text" id="photoQ" placeholder="es. Irama cantante" style="flex:1" onkeydown="if(event.key==='Enter')searchPhotos()">
-        <button class="btn btn-primary" onclick="searchPhotos()">Cerca</button>
+      <p style="font-size:13px;color:var(--text2);margin-bottom:14px;line-height:1.5">Incolla il link della foto — converto automaticamente Google Drive.</p>
+      <div style="display:flex;gap:8px;margin-bottom:12px">
+        <input type="text" id="photoUrlInput" placeholder="Link Google Drive, Imgur, ecc…" style="flex:1" onkeydown="if(event.key==='Enter')savePhotoUrl()">
+        <button class="btn btn-primary" onclick="savePhotoUrl()">Salva</button>
       </div>
-      <div id="photoResults" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;min-height:60px"></div>
+      <div id="photoPreview" style="display:none;margin-top:10px;border-radius:12px;overflow:hidden;aspect-ratio:1;max-width:160px;margin:0 auto">
+        <img id="photoPreviewImg" src="" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.parentElement.style.display='none'">
+      </div>
+      <div style="margin-top:14px;background:var(--bg);border-radius:10px;padding:12px;font-size:12px;color:var(--text2);line-height:1.6">
+        <strong style="color:var(--text)">Google Drive:</strong> apri il file → tasto destro → "Ottieni link" → assicurati che sia "Chiunque con il link" → incolla qui, converto io.<br><br>
+        <strong style="color:var(--text)">Imgur</strong> (più semplice): vai su imgur.com → carica foto → copia il link diretto <code style="background:var(--surface);padding:1px 5px;border-radius:4px">.jpg</code>
+      </div>
     </div>
   </div>
 </div>
@@ -476,7 +483,7 @@ textarea { resize: vertical; min-height: 68px; font-size: 16px; }
 <input type="file" id="ticketFileInput" accept=".pdf,image/*" onchange="handleTicketFile(event)">
 
 <script>
-/* ── v3.6.0 ── */
+/* ── v3.9.0 ── */
 
 // Show install banner only on iOS Safari (not standalone)
 (function(){
@@ -564,23 +571,45 @@ async function init() {
 }
 
 /* ── IMAGE ── */
+/* ── IMAGE — Supabase artisti table first, Wikipedia fallback ── */
 async function getImg(artist) {
   if(imgCache[artist]) return imgCache[artist];
-  let url = null;
+  // 1. Check Supabase artisti table
+  try {
+    const r=await fetch(`${SUPA_URL}/rest/v1/concertilive_artisti?nome=eq.${encodeURIComponent(artist)}&select=foto_url`, {
+      headers:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Accept':'application/json'}
+    });
+    if(r.ok){
+      const d=await r.json();
+      if(d.length && d[0].foto_url){ imgCache[artist]=d[0].foto_url; savePhotos(); return d[0].foto_url; }
+    }
+  } catch {}
+  // 2. Wikipedia IT
   try {
     const r=await fetch(`https://it.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(artist)}&prop=pageimages&format=json&pithumbsize=500&origin=*`);
     const d=await r.json(); const p=Object.values(d.query.pages)[0];
-    if(p?.thumbnail?.source) url=p.thumbnail.source;
+    if(p?.thumbnail?.source){ imgCache[artist]=p.thumbnail.source; savePhotos(); return p.thumbnail.source; }
   } catch {}
-  if(!url) {
-    try {
-      const r=await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(artist)}&prop=pageimages&format=json&pithumbsize=500&origin=*`);
-      const d=await r.json(); const p=Object.values(d.query.pages)[0];
-      if(p?.thumbnail?.source) url=p.thumbnail.source;
-    } catch {}
-  }
-  if(url) { imgCache[artist]=url; savePhotos(); }
-  return url;
+  // 3. Wikipedia EN
+  try {
+    const r=await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(artist)}&prop=pageimages&format=json&pithumbsize=500&origin=*`);
+    const d=await r.json(); const p=Object.values(d.query.pages)[0];
+    if(p?.thumbnail?.source){ imgCache[artist]=p.thumbnail.source; savePhotos(); return p.thumbnail.source; }
+  } catch {}
+  return null;
+}
+
+async function saveArtistPhoto(artist, url) {
+  // Upsert in Supabase artisti table
+  try {
+    await fetch(`${SUPA_URL}/rest/v1/concertilive_artisti`, {
+      method:'POST',
+      headers:{'apikey':SUPA_KEY,'Authorization':`Bearer ${SUPA_KEY}`,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'},
+      body: JSON.stringify({nome: artist, foto_url: url})
+    });
+  } catch(e) { console.error('saveArtistPhoto:', e); }
+  imgCache[artist]=url;
+  savePhotos();
 }
 
 /* ── RENDER ── */
@@ -703,7 +732,7 @@ function renderList() {
       const sub=[c.venue,c.city].filter(Boolean).join(' · ');
       const table=isFuture?UT:CT;
       const cached=imgCache[c.artist];
-      return `<div class="c-row ${rowCls}">
+      return `<div class="c-row ${rowCls}" onclick="openArtist('${c.artist.replace(/'/g,"\\'")}')" style="cursor:pointer">
         ${cached
           ? `<img class="c-img" id="ci_${c.id}" src="${cached}" alt="${c.artist}">`
           : `<img class="c-img" id="ci_${c.id}" src="" alt="${c.artist}" style="display:none" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="c-img-ph" id="ciph_${c.id}">🎵</div>`}
@@ -718,7 +747,7 @@ function renderList() {
           ${c.price?`<span class="c-price">€${Number(c.price).toFixed(0)}</span>`:''}
           ${isFuture&&days>=0?futureBadge(days):''}
         </div>
-        <button class="c-del" onclick="openMenu('${c.id}','${table}',event)" title="Opzioni">···</button>
+        <button class="c-del" onclick="openMenu('${c.id}','${table}',event);event.stopPropagation()" title="Opzioni">···</button>
       </div>`;
     }).join('');
     return `<div class="yr-sep"><span class="yr-sep-label">${y}</span><div class="yr-sep-line"></div></div>${rows}`;
@@ -936,84 +965,77 @@ async function openArtist(artist){
 function closeArtist(){ document.getElementById('artistPage').classList.remove('open'); }
 
 /* ── PHOTO SEARCH ── */
-function openPhotoSearch(){ document.getElementById('photoQ').value=currentArtist; document.getElementById('photoResults').innerHTML=''; document.getElementById('photoOverlay').classList.add('open'); searchPhotos(); }
-function closePhotoSearch(){ document.getElementById('photoOverlay').classList.remove('open'); }
-async function searchPhotos(){
-  const q=document.getElementById('photoQ').value.trim(); if(!q)return;
-  const res=document.getElementById('photoResults');
-  res.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:16px;color:var(--text2);font-size:13px">⏳ Ricerca…</div>';
-  const photos=new Set();
-
-  // 1. Wikipedia IT — page thumbnail
-  try{
-    const r=await fetch(`https://it.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(q)}&prop=pageimages&format=json&pithumbsize=800&origin=*`);
-    const d=await r.json(); const p=Object.values(d.query.pages)[0];
-    if(p?.thumbnail?.source) photos.add(p.thumbnail.source);
-  }catch{}
-
-  // 2. Wikipedia EN — page thumbnail
-  try{
-    const r=await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(q)}&prop=pageimages&format=json&pithumbsize=800&origin=*`);
-    const d=await r.json(); const p=Object.values(d.query.pages)[0];
-    if(p?.thumbnail?.source) photos.add(p.thumbnail.source);
-  }catch{}
-
-  // 3. Wikimedia Commons — search images by name
-  try{
-    const r=await fetch(`https://commons.wikimedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&srnamespace=6&format=json&origin=*&srlimit=12`);
-    const d=await r.json();
-    const titles=(d.query?.search||[]).map(x=>x.title);
-    await Promise.all(titles.slice(0,8).map(async t=>{
-      try{
-        const r2=await fetch(`https://commons.wikimedia.org/w/api.php?action=query&titles=${encodeURIComponent(t)}&prop=imageinfo&iiprop=url&iiurlwidth=400&format=json&origin=*`);
-        const d2=await r2.json();
-        const p2=Object.values(d2.query?.pages||{})[0];
-        const url=p2?.imageinfo?.[0]?.thumburl;
-        if(url) photos.add(url);
-      }catch{}
-    }));
-  }catch{}
-
-  // 4. Wikipedia IT — search article images
-  try{
-    const r=await fetch(`https://it.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&format=json&origin=*&srlimit=5`);
-    const d=await r.json();
-    const titles=(d.query?.search||[]).map(x=>x.title);
-    await Promise.all(titles.slice(0,3).map(async t=>{
-      try{
-        const r2=await fetch(`https://it.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(t)}&prop=pageimages&format=json&pithumbsize=600&origin=*`);
-        const d2=await r2.json(); const p2=Object.values(d2.query.pages)[0];
-        if(p2?.thumbnail?.source) photos.add(p2.thumbnail.source);
-      }catch{}
-    }));
-  }catch{}
-
-  const arr=[...photos].filter(Boolean);
-  if(!arr.length){
-    res.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text2);font-size:13px">Nessuna foto trovata.<br><span style="font-size:12px">Prova a scrivere il nome completo (es. "Olly cantante italiano")</span></div>';
-    return;
+function openPhotoSearch() {
+  const input = document.getElementById('photoUrlInput');
+  input.value = imgCache[currentArtist] || '';
+  // Show preview if already has photo
+  const preview = document.getElementById('photoPreview');
+  const previewImg = document.getElementById('photoPreviewImg');
+  if(imgCache[currentArtist]) {
+    previewImg.src = imgCache[currentArtist];
+    preview.style.display = 'block';
+  } else {
+    preview.style.display = 'none';
   }
-  res.innerHTML=arr.map(url=>`
-    <div onclick="selectPhoto('${url.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}');closePhotoSearch()"
-      style="aspect-ratio:1;border-radius:10px;overflow:hidden;border:2px solid var(--border);transition:border-color .15s;background:var(--bg)"
-      onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
-      <img src="${url}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.parentElement.style.display='none'">
-    </div>`).join('');
+  document.getElementById('photoOverlay').classList.add('open');
+  // Preview on input change
+  input.oninput = () => {
+    const url = input.value.trim();
+    if(url) { previewImg.src = url; preview.style.display = 'block'; }
+    else preview.style.display = 'none';
+  };
 }
-function selectPhoto(url){
-  imgCache[currentArtist]=url;
-  savePhotos();
+function closePhotoSearch() { document.getElementById('photoOverlay').classList.remove('open'); }
+
+function convertPhotoUrl(url) {
+  url = url.trim();
+  // Google Drive: vari formati → thumbnail diretto
+  const driveMatch = url.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)([a-zA-Z0-9_-]+)/);
+  if(driveMatch) {
+    return `https://lh3.googleusercontent.com/d/${driveMatch[1]}=s500`;
+  }
+  // Google Photos share link
+  if(url.includes('photos.google.com') || url.includes('photos.app.goo.gl')) {
+    // Non convertibile direttamente — avvisa
+    return null;
+  }
+  return url;
+}
+
+async function savePhotoUrl() {
+  const raw = document.getElementById('photoUrlInput').value.trim();
+  if(!raw) { showToast('⚠ Incolla un URL'); return; }
+  const url = convertPhotoUrl(raw);
+  if(!url) { showToast('⚠ Google Photos non supportato, usa Drive o Imgur'); return; }
+  showToast('⏳ Salvataggio…');
+  await saveArtistPhoto(currentArtist, url);
+  applyPhotoToUI(currentArtist, url);
+  closePhotoSearch();
+  showToast('✅ Foto salvata!');
+}
+
+function applyPhotoToUI(artist, url) {
+  // Avatar nella pagina artista
   const av=document.getElementById('aAvatar');
   const ph=document.getElementById('aAvatarPh');
   if(av){av.src=url;av.style.display='block';if(ph)ph.style.display='none';}
-  const t=document.getElementById('at_'+CSS.escape(currentArtist));if(t)t.src=url;
-  [...concerts,...upcoming].filter(c=>c.artist===currentArtist).forEach(c=>{
-    const img=document.getElementById(`ci_${c.id}`);const phe=document.getElementById(`ciph_${c.id}`);
+  // Thumbnail in "Più visti"
+  const t=document.getElementById('at_'+CSS.escape(artist));
+  if(t) t.src=url;
+  // Foto nelle righe lista
+  [...concerts,...upcoming].filter(c=>c.artist===artist).forEach(c=>{
+    const img=document.getElementById(`ci_${c.id}`);
+    const phe=document.getElementById(`ciph_${c.id}`);
     if(img){img.src=url;img.style.display='block';if(phe)phe.style.display='none';}
   });
-  showToast('✅ Foto salvata');
 }
 
+function selectPhoto(url) {
+  saveArtistPhoto(currentArtist, url).then(()=>{
+    applyPhotoToUI(currentArtist, url);
+    showToast('✅ Foto salvata');
+  });
+}
 /* ── SETTINGS ── */
 function openSettings(){ document.getElementById('settingsOverlay').classList.add('open'); }
 function closeSettings(){ document.getElementById('settingsOverlay').classList.remove('open'); }
