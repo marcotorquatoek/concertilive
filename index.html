@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Concerti">
 <meta name="theme-color" content="#0f3460">
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFS0lEQVR4nO3cPXLbVhSAUZCTNonbzKTTFqJVpFKRPi68iMykzEwWocLuU6jKKuwtqPNMWttZgFLRoSj+AHjv4V1cnlPakg0Rn64uQQqbIYinp6dvex8DZTabzb/dj6HXfyzg/HoEvmjQIr5eS8XdPGgRc6hl3M2CFjKXtAi7etBCZqqaYW9r/UPDIGbmqdlNlQktZGopndbFE1rM1FTaU1HQYqaFkq5mrRxCZilTV5DJE1rMLGlqb5OCFjM9TOludNBipqex/VW9Dg29jQradCaCMR1eDFrMRHKpx7NBi5mIznVphyaVk0GbzkR2qs+jQYuZNTjWqZWDVF4EbTqzJoe9mtCk8ixo05k12u/WhCYVQZPK16CtG6zZrl8TmlQETSqbYbBukIcJTSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaA==">
-<!-- v3.5.0 -->
+<!-- v3.6.0 -->
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -296,7 +296,7 @@ textarea { resize: vertical; min-height: 68px; font-size: 16px; }
         <path d="M102 43Q122 52 115 70" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" opacity=".9"/>
         <polygon points="42,55 44,48 46,55 53,55 47,59 49,66 44,62 39,66 41,59 35,55" fill="#FFD60A"/>
       </svg>
-      <span>Concert Tracker <span class="logo-version">v3.5.0</span></span>
+      <span>Concert Tracker <span class="logo-version">v3.6.0</span></span>
     </div>
     <div class="header-right">
       <div class="sync-pill" id="syncPill" onclick="manualSync()">
@@ -476,7 +476,7 @@ textarea { resize: vertical; min-height: 68px; font-size: 16px; }
 <input type="file" id="ticketFileInput" accept=".pdf,image/*" onchange="handleTicketFile(event)">
 
 <script>
-/* ── v3.5.0 ── */
+/* ── v3.6.0 ── */
 
 // Show install banner only on iOS Safari (not standalone)
 (function(){
@@ -566,17 +566,21 @@ async function init() {
 /* ── IMAGE ── */
 async function getImg(artist) {
   if(imgCache[artist]) return imgCache[artist];
+  let url = null;
   try {
     const r=await fetch(`https://it.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(artist)}&prop=pageimages&format=json&pithumbsize=500&origin=*`);
     const d=await r.json(); const p=Object.values(d.query.pages)[0];
-    if(p?.thumbnail?.source){imgCache[artist]=p.thumbnail.source;return p.thumbnail.source;}
+    if(p?.thumbnail?.source) url=p.thumbnail.source;
   } catch {}
-  try {
-    const r=await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(artist)}&prop=pageimages&format=json&pithumbsize=500&origin=*`);
-    const d=await r.json(); const p=Object.values(d.query.pages)[0];
-    if(p?.thumbnail?.source){imgCache[artist]=p.thumbnail.source;return p.thumbnail.source;}
-  } catch {}
-  return null;
+  if(!url) {
+    try {
+      const r=await fetch(`https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(artist)}&prop=pageimages&format=json&pithumbsize=500&origin=*`);
+      const d=await r.json(); const p=Object.values(d.query.pages)[0];
+      if(p?.thumbnail?.source) url=p.thumbnail.source;
+    } catch {}
+  }
+  if(url) { imgCache[artist]=url; savePhotos(); }
+  return url;
 }
 
 /* ── RENDER ── */
@@ -695,18 +699,19 @@ function renderList() {
       const days=daysUntil(c.date);
       const isFuture=c._type==='future';
       const rowCls=isFuture?(days===0?'today':days<=7?'very-near soon':days<=30?'soon':'future'):'';
-      const stars=[1,2,3,4,5].map(i=>`<span class="s ${c.rating&&i<=c.rating?'on':'off'}">★</span>`).join('');
       const dateStr=new Date(c.date+'T12:00').toLocaleDateString('it-IT',{day:'2-digit',month:'short',year:'numeric'});
       const sub=[c.venue,c.city].filter(Boolean).join(' · ');
       const table=isFuture?UT:CT;
+      const cached=imgCache[c.artist];
       return `<div class="c-row ${rowCls}">
-        <img class="c-img" id="ci_${c.id}" src="" alt="${c.artist}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:none">
-        <div class="c-img-ph" id="ciph_${c.id}">🎵</div>
+        ${cached
+          ? `<img class="c-img" id="ci_${c.id}" src="${cached}" alt="${c.artist}">`
+          : `<img class="c-img" id="ci_${c.id}" src="" alt="${c.artist}" style="display:none" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="c-img-ph" id="ciph_${c.id}">🎵</div>`}
         <div class="c-info">
           <div class="c-artist">${c.artist}</div>
           <div class="c-sub">${sub||'—'}</div>
           ${c.sector?`<div class="c-sub" style="color:var(--purple);font-weight:600;font-size:10px">📍 ${c.sector}</div>`:''}
-          ${c.rating&&!isFuture?`<div class="c-stars">${stars}</div>`:''}
+          ${c.notes?`<div class="c-sub" style="font-style:italic">${c.notes.slice(0,60)}${c.notes.length>60?'…':''}</div>`:''}
         </div>
         <div class="c-right">
           <span class="c-date">${dateStr}</span>
