@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-title" content="Concerti">
 <meta name="theme-color" content="#0f3460">
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFS0lEQVR4nO3cPXLbVhSAUZCTNonbzKTTFqJVpFKRPi68iMykzEwWocLuU6jKKuwtqPNMWttZgFLRoSj+AHjv4V1cnlPakg0Rn64uQQqbIYinp6dvex8DZTabzb/dj6HXfyzg/HoEvmjQIr5eS8XdPGgRc6hl3M2CFjKXtAi7etBCZqqaYW9r/UPDIGbmqdlNlQktZGopndbFE1rM1FTaU1HQYqaFkq5mrRxCZilTV5DJE1rMLGlqb5OCFjM9TOludNBipqex/VW9Dg29jQradCaCMR1eDFrMRHKpx7NBi5mIznVphyaVk0GbzkR2qs+jQYuZNTjWqZWDVF4EbTqzJoe9mtCk8ixo05k12u/WhCYVQZPK16CtG6zZrl8TmlQETSqbYbBukIcJTSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaFIRNKkImlQETSqCJhVBk8rW/kwmJjSpCJpUBE0qgiYVQZOKoElF0KQiaA==">
-<!-- v3.9.0 -->
+<!-- v4.0.0 -->
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -296,7 +296,7 @@ textarea { resize: vertical; min-height: 68px; font-size: 16px; }
         <path d="M102 43Q122 52 115 70" fill="none" stroke="white" stroke-width="8" stroke-linecap="round" opacity=".9"/>
         <polygon points="42,55 44,48 46,55 53,55 47,59 49,66 44,62 39,66 41,59 35,55" fill="#FFD60A"/>
       </svg>
-      <span>Concert Tracker <span class="logo-version">v3.9.0</span></span>
+      <span>Concert Tracker <span class="logo-version">v4.0.0</span></span>
     </div>
     <div class="header-right">
       <div class="sync-pill" id="syncPill" onclick="manualSync()">
@@ -366,7 +366,15 @@ textarea { resize: vertical; min-height: 68px; font-size: 16px; }
       <div class="form-grid">
         <div class="fg full"><label>Artista *</label><input type="text" id="fArtist" placeholder="es. Irama"></div>
         <div class="fg"><label>Data *</label><input type="date" id="fDate"></div>
-        <div class="fg"><label>Prezzo €</label><input type="number" id="fPrice" placeholder="0" min="0" step="0.01"></div>
+        <div class="fg">
+          <label>Prezzo €</label>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="number" id="fPrice" placeholder="0" min="0" step="0.01" style="flex:1">
+            <label style="display:flex;align-items:center;gap:5px;font-size:12px;text-transform:none;letter-spacing:0;white-space:nowrap;cursor:pointer;color:var(--text)">
+              <input type="checkbox" id="fGift" style="width:16px;height:16px;cursor:pointer;accent-color:var(--purple)"> 🎁 Regalo
+            </label>
+          </div>
+        </div>
         <div class="fg"><label>Location</label><input type="text" id="fVenue" placeholder="es. San Siro"></div>
         <div class="fg"><label>Settore</label><input type="text" id="fSector" placeholder="es. Parterre"></div>
         <div class="fg"><label>Città</label><input type="text" id="fCity" placeholder="es. Milano"></div>
@@ -483,7 +491,7 @@ textarea { resize: vertical; min-height: 68px; font-size: 16px; }
 <input type="file" id="ticketFileInput" accept=".pdf,image/*" onchange="handleTicketFile(event)">
 
 <script>
-/* ── v3.9.0 ── */
+/* ── v4.0.0 ── */
 
 // Show install banner only on iOS Safari (not standalone)
 (function(){
@@ -618,12 +626,13 @@ function render(){ renderStats(); renderAnnual(); renderTop(); renderFilters(); 
 function renderStats() {
   const all=[...concerts,...upcoming];
   const total=concerts.length, future=upcoming.length;
-  const spend=concerts.reduce((s,c)=>s+(c.price||0),0);
+  const spend=concerts.filter(c=>!c.gift).reduce((s,c)=>s+(c.price||0),0);
+  const gifts=concerts.filter(c=>c.gift).length;
   const artists=new Set(all.map(c=>c.artist.toLowerCase())).size;
   const cities=new Set(concerts.map(c=>c.city).filter(Boolean).map(c=>c.toLowerCase())).size;
   document.getElementById('statsGrid').innerHTML=[
     {lbl:'Concerti visti',val:total,sub:`+ ${future} in programma`,cls:''},
-    {lbl:'Spesa Totale',val:`€${spend.toFixed(0)}`,sub:total?`~€${(spend/total).toFixed(0)} a biglietto`:'',cls:'c2'},
+    {lbl:'Spesa Totale',val:`€${spend.toFixed(0)}`,sub:total?`~€${(spend/(total-gifts||1)).toFixed(0)} a biglietto${gifts?` · ${gifts} 🎁`:''}`:'',cls:'c2'},
     {lbl:'Artisti',val:artists,sub:'unici',cls:'c3'},
     {lbl:'Città',val:cities,sub:'luoghi diversi',cls:'c4'},
   ].map(s=>`<div class="stat-card ${s.cls}"><div class="stat-lbl">${s.lbl}</div><div class="stat-val">${s.val}</div><div class="stat-sub">${s.sub}</div></div>`).join('');
@@ -744,7 +753,7 @@ function renderList() {
         </div>
         <div class="c-right">
           <span class="c-date">${dateStr}</span>
-          ${c.price?`<span class="c-price">€${Number(c.price).toFixed(0)}</span>`:''}
+          ${c.gift?`<span class="c-price" style="color:var(--purple)">🎁 Regalo</span>`:c.price?`<span class="c-price">€${Number(c.price).toFixed(0)}</span>`:''}
           ${isFuture&&days>=0?futureBadge(days):''}
         </div>
         <button class="c-del" onclick="openMenu('${c.id}','${table}',event);event.stopPropagation()" title="Opzioni">···</button>
@@ -810,6 +819,7 @@ async function delConcert(id, table) {
 function openModal(){
   window._editingId=null; window._editingTable=null; pendingTicket=null;
   ['fArtist','fDate','fPrice','fVenue','fSector','fCity','fCountry','fNotes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fGift').checked=false;
   document.getElementById('uploadZone').classList.remove('has');
   document.getElementById('uploadZone').querySelector('.upload-icon').textContent='🎫';
   document.getElementById('uploadName').style.display='none';
@@ -824,7 +834,8 @@ function editConcert(id, table) {
   pendingTicket=c.ticket||null;
   document.getElementById('fArtist').value=c.artist||'';
   document.getElementById('fDate').value=c.date||'';
-  document.getElementById('fPrice').value=c.price||'';
+  document.getElementById('fPrice').value=c.gift?'':c.price||'';
+  document.getElementById('fGift').checked=c.gift||false;
   document.getElementById('fVenue').value=c.venue||'';
   document.getElementById('fSector').value=c.sector||'';
   document.getElementById('fCity').value=c.city||'';
@@ -840,7 +851,7 @@ async function saveConcert(){
   const artist=document.getElementById('fArtist').value.trim();
   const date=document.getElementById('fDate').value;
   if(!artist||!date){showToast('⚠ Artista e data obbligatori');return;}
-
+  const gift=document.getElementById('fGift').checked;
   const isEdit=!!window._editingId;
   const obj={
     id: isEdit ? window._editingId : uid(),
@@ -849,7 +860,8 @@ async function saveConcert(){
     sector:document.getElementById('fSector').value.trim(),
     city:document.getElementById('fCity').value.trim(),
     country:document.getElementById('fCountry').value.trim(),
-    price:parseFloat(document.getElementById('fPrice').value)||0,
+    price:gift?0:parseFloat(document.getElementById('fPrice').value)||0,
+    gift: gift||false,
     notes:document.getElementById('fNotes').value.trim(),
   };
 
